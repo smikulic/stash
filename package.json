@@ -1,6 +1,6 @@
 {
   "name": "stash",
-  "repository": "",
+  "repository": "git@github.com:smikulic/stash.git",
   "version": "1.0.0",
   "description": "Stash app, list you todos, stuff to check out later, or just a simple grocery list",
   "main": "",
@@ -17,7 +17,9 @@
     "body-parser": "^1.14.1",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
-    "node-guid": "0.0.3"
+    "node-guid": "0.0.3",
+    "react": "^0.13.3",
+    "react-router": "^0.13.4"
   },
   "devDependencies": {
     "babelify": "^6.3.0",

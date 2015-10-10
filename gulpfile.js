@@ -55,8 +55,8 @@ gulp.task('bundle', function() {
 				entries: paths.clientJS + 'app.jsx',
 				debug: true
 			})
-			.transform(reactify)
 			.transform(babelify)
+			.transform(reactify)
 			.bundle()
 			.on('error', logAndIgnoreError)
 			.pipe(source('app.js'))

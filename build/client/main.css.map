@@ -1,1 +1,1 @@
-{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAEA,IAAI,CAAC;EACJ,KAAK,EAHA,GAAG;EAIR,UAAU,EAAE,GAAI,GAFX","file":"main.css","sourcesContent":["$red: red;\n\nbody {\n\tcolor: $red;\n\tbackground: red;\n}"],"sourceRoot":"/source/"}
+{"version":3,"sources":["main.scss"],"names":[],"mappings":"AAEA,IAAI,CAAC;EACJ,KAAK,EAHA,GAAG;EAIR,UAAU,EAAE,KAAM,GAFb","file":"main.css","sourcesContent":["$red: red;\n\nbody {\n\tcolor: $red;\n\tbackground: white;\n}"],"sourceRoot":"/source/"}
