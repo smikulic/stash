@@ -1,6 +1,12 @@
-$red: red;
+// Settings
+@import "config/bootstrap.scss";
+@import "config/mixins.scss";
+@import "config/settings.scss";
+@import "config/utilities.scss";
 
-body {
-	color: $red;
-	background: white;
-}
+// Layout
+@import "layout/navigation.scss";
+
+// Modules
+@import "modules/overviewStatus.scss";
+@import "modules/savingsList.scss";

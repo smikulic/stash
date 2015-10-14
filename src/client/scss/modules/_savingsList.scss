@@ -1,0 +1,28 @@
+.savingsList-header-element {
+	margin-bottom: 20px;
+	padding: 10px 15px;
+	color: $secondaryTextColor;
+	border-bottom: 1px solid $dividerColor;
+}
+
+.savingsList-content-element {
+	@include m-height(40px);
+	color: $secondaryTextColor;
+	cursor: pointer;
+}
+.savingsList-content-element .completed-percentage,
+.savingsList-content-element .completed-value {
+	@include m-height(20px);
+}
+.savingsList-content-element .title {
+	color: $primaryTextColor;
+}
+
+.savingsList-content-element--done .completed,
+.savingsList-content-element--done .title {
+	color: $lightPrimaryColor;
+}
+
+.savingsList-content-element:hover {
+	background-color: $dividerColor;
+}

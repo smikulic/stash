@@ -9,6 +9,7 @@ import Router from 'react-router';
 
 import NotFoundPage from './components/pageComponents/NotFoundPageComponent.jsx';
 import OverviewPage from './components/pageComponents/OverviewPageComponent.jsx';
+import SavingsPage from './components/pageComponents/SavingsPageComponent.jsx';
 import Navigation from './components/layoutComponents/NavigationComponent.jsx';
 
 /**
@@ -39,7 +40,7 @@ const App = React.createClass({
         }*/
     },
 
-    componentWillUnmount () {
+    componentWillUnmount() {
         //UserStore.removeChangeListener(this._onChange);
     },
 
@@ -47,7 +48,7 @@ const App = React.createClass({
         return getStateFromStore();
     },
 
-    _onChange () {
+    _onChange() {
         this.setState(getStateFromStore());
     },
 
@@ -70,19 +71,17 @@ const routes = (
 
         {/* Pages */}
         <Route name="overviewPage" path="/overview" handler={OverviewPage} />
+        <Route name="savingsPage" path="/savings" handler={SavingsPage} />
 
         <Redirect from="/" to="overviewPage" />
     </Route>
 );
 
 if (document.getElementById('app')) {
-	console.log('gg');
     Router.run(routes, (Handler, state) => {
         const params = state.params;
         const currentPath = state.path;
         const activeRoutes = state.routes.map((el) => {return el.name}).filter((el) => {return el});
-
-        //PageTransition(currentPath);
 
         React.render(<Handler currentPath={currentPath} activeRoutes={activeRoutes} params={params} />,
             document.getElementById('app')
