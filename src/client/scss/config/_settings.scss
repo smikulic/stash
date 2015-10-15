@@ -16,3 +16,14 @@ $accentColor:        						#FF5252;
 $primaryTextColor:   						#212121;
 $secondaryTextColor: 						#727272;
 $dividerColor:       						#B6B6B6;
+
+// Z-index
+$zIndex-overlay:							400;
+$zIndex-modal:								500;
+
+// Border radius
+$bRadius-default:							3px;
+
+// Box shadow
+$boxShadow-default:							0 3px 12px -2px $dividerColor;
+$boxShadow-hover: 							0 6px 14px -2px $dividerColor;

@@ -11,6 +11,8 @@ import NotFoundPage from './components/pageComponents/NotFoundPageComponent.jsx'
 import OverviewPage from './components/pageComponents/OverviewPageComponent.jsx';
 import SavingsPage from './components/pageComponents/SavingsPageComponent.jsx';
 import Navigation from './components/layoutComponents/NavigationComponent.jsx';
+import Modal from './components/layoutComponents/ModalComponent.jsx';
+
 
 /**
  * Necessary Router Variables
@@ -55,6 +57,9 @@ const App = React.createClass({
     render() {
         return (
             <div className="container-fluid">
+                {/* The Modal component */}
+                <Modal />
+
                 {/* The MainFrame component is outside the routes, and can be animated seperately */}
                 <Navigation user={this.state.userObject} prev={this.props.prev} {...this.props} />
 

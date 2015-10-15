@@ -17,9 +17,14 @@
     "body-parser": "^1.14.1",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "flux": "^2.1.1",
+    "keymirror": "^0.1.1",
+    "lodash": "^3.10.1",
     "node-guid": "0.0.3",
+    "object-assign": "^4.0.1",
     "react": "^0.13.3",
-    "react-router": "^0.13.4"
+    "react-router": "^0.13.4",
+    "uuid": "^2.0.1"
   },
   "devDependencies": {
     "babelify": "^6.3.0",
