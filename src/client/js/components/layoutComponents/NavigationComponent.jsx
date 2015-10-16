@@ -10,6 +10,7 @@ const Navigation = React.createClass({
     render() {
         let overviewElementNode = <div className="navigation-element">Overview</div>;
         let savingsElementNode = <div className="navigation-element">Savings</div>;
+        let userElementNode = <div className="navigation-element">{this.props.user}</div>;
 
         switch(this.props.activeRoutes[0]) {
             case "overviewPage":
@@ -27,6 +28,9 @@ const Navigation = React.createClass({
                 </Link>
                 <Link to="savingsPage">
                     {savingsElementNode}
+                </Link>
+                <Link to="overviewPage">
+                    {userElementNode}
                 </Link>
             </div>
         );

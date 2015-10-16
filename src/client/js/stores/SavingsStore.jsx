@@ -1,5 +1,7 @@
 'use strict';
 
+import uuid from 'uuid';
+import _ from 'lodash';
 import AppDispatcher from '../dispatcher.js';
 import SavingsConstants from '../constants/SavingsConstants.jsx';
 import assign from 'object-assign';
@@ -13,27 +15,48 @@ let _savingsObject = [
         title: "New laptop",
         price: 1200,
         initialSavings: 0,
-        due: "Apr 01 2016 00:00:00 GMT+0200 (CEST)"
+        due: "2016-04-01"
     },
     {
         id: 2,
         title: "New glasses",
         price: 400,
         initialSavings: 200,
-        due: "Dec 01 2015 00:00:00 GMT+0200 (CEST)"
+        due: "2015-12-01"
     },
     {
         id: 3,
         title: "Marriage documents",
         price: 400,
         initialSavings: 400,
-        due: "Dec 01 2015 00:00:00 GMT+0200 (CEST)"
+        due: "2015-12-01"
     }
 ];
 
 let _addSavingModal = {
     active: false
 };
+
+function _addSaving (title, value, saved, due) {
+    _savingsObject.push({
+        id: uuid.v4(),
+        title: title,
+        price: value,
+        initialSavings: saved,
+        due: due
+    });
+}
+
+function _deleteSaving (id) {
+    var index = _savingsObject.indexOf(id);
+    console.log(_savingsObject, id)
+    _savingsObject.splice(id, 1);
+    //_.drop(_savingsObject, id);
+    if (index > -1) {
+        //_savingsObject.splice(index, 1);
+    }
+    console.log(_savingsObject)
+}
 
 
 const SavingsStore = assign({}, EventEmitter.prototype, {
@@ -74,7 +97,12 @@ SavingsStore.dispatchToken = AppDispatcher.register(function (payload) {
             break;
 
         case SavingsConstants.SAVINGS_ADD:
-            console.log('savings add')
+            _addSaving(action.title, action.value, action.saved, action.due);
+            SavingsStore.emitChange();
+            break;
+
+        case SavingsConstants.SAVINGS_DELETE:
+            _deleteSaving(action.id);
             SavingsStore.emitChange();
             break;
 

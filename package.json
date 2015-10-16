@@ -2,7 +2,7 @@
   "name": "stash",
   "repository": "git@github.com:smikulic/stash.git",
   "version": "1.0.0",
-  "description": "Stash app, list you todos, stuff to check out later, or just a simple grocery list",
+  "description": "Stash app, keep track of your savings",
   "main": "",
   "scripts": {
     "start": "node index.js"
@@ -20,6 +20,7 @@
     "flux": "^2.1.1",
     "keymirror": "^0.1.1",
     "lodash": "^3.10.1",
+    "moment": "^2.10.6",
     "node-guid": "0.0.3",
     "object-assign": "^4.0.1",
     "react": "^0.13.3",

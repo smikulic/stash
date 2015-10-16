@@ -23,7 +23,6 @@ var source = require('vinyl-source-stream');
 var nodemon = require('gulp-nodemon');
 var babelify = require('babelify');
 var sass = require('gulp-sass');
-//var concat = require('gulp-concat');
 
 
 /**

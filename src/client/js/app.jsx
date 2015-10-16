@@ -25,7 +25,7 @@ window.React = React;
 
 function getStateFromStore() {
     return {
-        userObject: 'test user',//UserStore.getUser(),
+        userObject: 'Leih Boyden',//UserStore.getUser(),
         //socketIsLive: UserStore.getSocketIsLive()
     }
 }
