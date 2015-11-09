@@ -1,7 +1,7 @@
-## Stash app
+# Stash app
 ---
 
-### Stack:
+## Stack:
 - ES6
 - React.js (.jsx) / Flux
 - Gulp.js
