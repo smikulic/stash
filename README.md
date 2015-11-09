@@ -1,4 +1,5 @@
-### Stash app
+## Stash app
+---
 
 ### Stack:
 - ES6
