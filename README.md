@@ -1,5 +1,4 @@
 # Stash app
----
 
 ## Stack:
 - ES6
@@ -9,11 +8,11 @@
 - Express.js
 - MongoDB / Moongoose
 
-### Commands
+## Commands
 Start server: `gulp serve`
 Start DB: `sudo mongod`
 
-### Package explanation
+## Package explanation
 <strong>express</strong> for running node.js/express.js server (API requests, DB communication, etc.)
 <strong>body-parser</strong> for parsing JSON files on server side
 <strong>ejs</strong> for handling index.ejs file in node server (easier to render ejs template rather than html file)
@@ -23,7 +22,7 @@ Start DB: `sudo mongod`
 <strong>moment</strong> for handling date and time features
 <strong>object-assign</strong> for assigning new functions to object (used in react Stores)
 
-### These are used for login/auth
+## These are used for login/auth
 express-session
 cookie-parser
 jade
