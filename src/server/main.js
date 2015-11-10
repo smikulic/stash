@@ -6,26 +6,71 @@ var parser = require('body-parser');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var expressSession = require('express-session');
+var passwordless = require('passwordless');
+var MongoStore = require('passwordless-mongostore');
+var email   = require("emailjs");
 var mongoose = require('mongoose');
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 
 /**
 * Bootstrap express app
 */
 var app = new express();
-
 app.set('port', process.env.PORT || 8080);
 
-/*app.get('/', function(req, res) {
-	res.render('./../src/client/index.ejs', {});
-})*/
 app.use(express.static(__dirname + '/../../build/client'))
 .listen(8080);
+
+
+/**
+* Email setup
+*/
+var yourEmail = 'sinisa.mikulic@gmail.com';
+var yourPwd = '11GmailMika11';
+var yourSmtp = 'smtp.gmail.com';
+var smtpServer  = email.server.connect({
+   user:    yourEmail, 
+   password: yourPwd, 
+   host:    yourSmtp, 
+   ssl:     true
+});
+
+
+/**
+* MongoDB
+*/
+var pathToMongoDb = 'mongodb://localhost/passwordless-simple-mail';
+
+
+/**
+* Path to be send via email
+*/
+var host = 'http://localhost:9001/';
+
+
+/**
+* Setup of Passwordless
+*/
+passwordless.init(new MongoStore(pathToMongoDb));
+passwordless.addDelivery(
+    function(tokenToSend, uidToSend, recipient, callback) {
+        // Send out token
+        smtpServer.send({
+           text:    'Hello!\nYou can now access your account here: ' 
+                + host + '?token=' + tokenToSend + '&uid=' + encodeURIComponent(uidToSend), 
+           from:    yourEmail, 
+           to:      recipient,
+           subject: 'Token for ' + host
+        }, function(err, message) { 
+            if(err) {
+                console.log(err);
+            }
+            callback(err);
+        });
+    });
 
 
 /**
@@ -35,13 +80,14 @@ app.use(parser.json());
 app.use(parser.urlencoded({extended: false}));
 app.use(logger('dev'));
 app.use(cookieParser());
-app.use(require('express-session')({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(expressSession({secret: '42', saveUninitialized: false, resave: false}));
+
+
+/**
+* Passwordless middleware setup
+*/
+app.use(passwordless.sessionSupport());
+app.use(passwordless.acceptToken({ successRedirect: '/' }));
 
 app.use('/', routes);
 
@@ -50,22 +96,7 @@ app.use('/', routes);
 * View engine setup
 */
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
-
-/**
-* Passport config
-*/ 
-var Account = require('./models/account');
-passport.use(new LocalStrategy(Account.authenticate()));
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
-
-
-/**
-* Mongoose
-*/
-mongoose.connect('mongodb://localhost/passport_local_mongoose_express4');
+app.set('view engine', 'ejs');
 
 
 /**
@@ -109,6 +140,3 @@ module.exports = app;
 /*if (process.env.NODE_ENV === 'development') {
     console.log('Development environment!');
 }*/
-
-//require('./database.js');
-//require('./routes/items.js')(app);

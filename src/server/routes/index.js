@@ -1,42 +1,56 @@
 var express = require('express');
-var passport = require('passport');
+var passwordless = require('passwordless');
 var Account = require('../models/account');
 var router = express.Router();
 
 
-router.get('/', function (req, res) {
-    res.render('index', { user : req.user });
+/* GET home page. */
+router.get('/', function(req, res) {
+  if (req.user) {
+    res.render('../../../src/client/index.ejs', { user: req.user });
+  } else {
+    res.render('index', { user: req.user });  
+  }
 });
 
-router.get('/register', function(req, res) {
-    res.render('register', { });
+/* GET restricted site. */
+router.get('/restricted', passwordless.restricted(), function(req, res) {
+  res.render('restricted', { user: req.user });
 });
 
-router.post('/register', function(req, res) {
-    Account.register(new Account({ username : req.body.username }), req.body.password, function(err, account) {
-        if (err) {
-            return res.render('register', { account : account });
-        }
-
-        passport.authenticate('local')(req, res, function () {
-            //res.redirect('/');
-            res.render('../../../src/client/index.ejs', {});
-        });
-    });
-});
-
+/* GET login screen. */
 router.get('/login', function(req, res) {
-    res.render('login', { user : req.user });
+  res.render('login', { user: req.user });
 });
 
-router.post('/login', passport.authenticate('local'), function(req, res) {
-    //res.redirect('/');
-    res.render('../../../src/client/index.ejs', {});
+/* GET logout. */
+router.get('/logout', passwordless.logout(), function(req, res) {
+  res.redirect('/');
 });
 
-router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
+
+var users = [
+  { email: 'sinisa.mikulic@gmail.com', savingsData: {} },
+  { email: 'frut3k@hotmail.com', savingsData: {} }
+];
+
+/* POST login screen. */
+router.post('/sendtoken', 
+  passwordless.requestToken(
+    // Simply accept every user
+    function(user, delivery, callback) {
+      
+      for (var i = users.length - 1; i >= 0; i--) {
+          if(users[i].email === user.toLowerCase()) {
+              return callback(null, users[i]);
+          }
+      }
+      
+      callback(null, null);
+    }),
+    function(req, res) {
+      // Success!
+      res.render('sent');
 });
 
 

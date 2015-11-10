@@ -10,6 +10,25 @@
 - MongoDB / Moongoose
 
 
+## Install
+`git clone git@github.com:smikulic/stash.git`
+
+`sudo npm install`
+
+`sudo npm install gulp -g`
+
+`brew install mongodb`
+
+Go to user root and run `sudo mkdir -p /data/db` to create default location where mongod process will write data,
+and set read and write permissions to that directory
+
+Start Mongo DB with `sudo mongod` and then
+
+start server with `gulp serve`
+
+`Go to localhost:/9001`
+
+
 ## Commands
 Start server: `gulp serve`
 Start DB: `sudo mongod`
