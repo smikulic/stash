@@ -45,7 +45,6 @@ router.post('/sendtoken',
               return callback(null, users[i]);
           }
       }
-      
       callback(null, null);
     }),
     function(req, res) {

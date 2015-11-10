@@ -29,7 +29,7 @@ app.use(express.static(__dirname + '/../../build/client'))
 * Email setup
 */
 var yourEmail = 'sinisa.mikulic@gmail.com';
-var yourPwd = '11GmailMika11';
+var yourPwd = '';
 var yourSmtp = 'smtp.gmail.com';
 var smtpServer  = email.server.connect({
    user:    yourEmail, 
