@@ -24,6 +24,13 @@ and set read and write permissions to that directory
 
 Start Mongo DB with `sudo mongod` and then
 
+create file `node.config.js` in root directory and write
+```
+var _pw = "YOUR_EMAIL_CLIENT_PASSWORD";
+
+module.exports = _pw;
+```
+
 start server with `gulp serve`
 
 `Go to localhost:/9001`

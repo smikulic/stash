@@ -30,8 +30,8 @@ router.get('/logout', passwordless.logout(), function(req, res) {
 
 
 var users = [
-  { email: 'sinisa.mikulic@gmail.com', savingsData: {} },
-  { email: 'frut3k@hotmail.com', savingsData: {} }
+  { id: 1, email: 'sinisa.mikulic@gmail.com', savingsData: {} },
+  { id: 2, email: 'frut3k@hotmail.com', savingsData: {} }
 ];
 
 /* POST login screen. */
@@ -41,15 +41,23 @@ router.post('/sendtoken',
     function(user, delivery, callback) {
       
       for (var i = users.length - 1; i >= 0; i--) {
-          if(users[i].email === user.toLowerCase()) {
-              return callback(null, users[i]);
-          }
+        if(users[i].email === user.toLowerCase()) {
+            return callback(null, users[i].email);
+        }
       }
       callback(null, null);
     }),
     function(req, res) {
       // Success!
       res.render('sent');
+});
+
+
+/**
+ * Deliver user data
+*/
+router.get('/getuser', function(req, res) {
+  return res.send(req.user || null);
 });
 
 

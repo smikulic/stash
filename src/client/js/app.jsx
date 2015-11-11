@@ -12,6 +12,8 @@ import OverviewPage from './components/pageComponents/OverviewPageComponent.jsx'
 import SavingsPage from './components/pageComponents/SavingsPageComponent.jsx';
 import Navigation from './components/layoutComponents/NavigationComponent.jsx';
 import Modal from './components/layoutComponents/ModalComponent.jsx';
+import UserStore from './stores/UserStore.jsx';
+import ApiUtils from './utils/ApiUtils.jsx';
 
 
 /**
@@ -24,9 +26,9 @@ const PureRendermixin = React.addons.PureRenderMixin;
 window.React = React;
 
 function getStateFromStore() {
+    console.log(UserStore.getUser())
     return {
-        userObject: 'Leih Boyden',//UserStore.getUser(),
-        //socketIsLive: UserStore.getSocketIsLive()
+        userObject: UserStore.getUser()
     }
 }
 
@@ -34,16 +36,12 @@ const App = React.createClass({
     mixins: [PureRendermixin],
 
     componentDidMount() {
-        /*UserStore.addChangeListener(this._onChange);
-        ApiUtils.retrieveUserObject();
-
-        if (!this.state.socketIsLive) {
-            WebSocketUtils.initialize();
-        }*/
+      UserStore.addChangeListener(this._onChange);
+      ApiUtils.retrieveUserObject();
     },
 
     componentWillUnmount() {
-        //UserStore.removeChangeListener(this._onChange);
+        UserStore.removeChangeListener(this._onChange);
     },
 
     getInitialState() {
