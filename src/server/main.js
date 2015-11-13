@@ -48,6 +48,7 @@ var smtpServer  = email.server.connect({
 * MongoDB
 */
 var pathToMongoDb = 'mongodb://localhost/passwordless-simple-mail';
+var pathToMongoDbApp = 'mongodb://localhost/stashApp';
 
 
 /**
@@ -76,6 +77,12 @@ passwordless.addDelivery(
             callback(err);
         });
     });
+
+
+/**
+* App MongoDB setup
+*/
+mongoose.connect(pathToMongoDbApp);
 
 
 /**

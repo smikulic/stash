@@ -1,10 +1,11 @@
 var express = require('express');
 var passwordless = require('passwordless');
-var Account = require('../models/account');
+var User     = require('../models/user');
+var mongoose = require('mongoose');
 var router = express.Router();
 
 
-/* GET home page. */
+/* GET route. */
 router.get('/', function(req, res) {
   if (req.user) {
     res.render('../../../src/client/index.ejs', { user: req.user });
@@ -12,40 +13,36 @@ router.get('/', function(req, res) {
     res.render('index', { user: req.user });  
   }
 });
-
 /* GET restricted site. */
 router.get('/restricted', passwordless.restricted(), function(req, res) {
   res.render('restricted', { user: req.user });
 });
-
 /* GET login screen. */
 router.get('/login', function(req, res) {
   res.render('login', { user: req.user });
 });
-
 /* GET logout. */
 router.get('/logout', passwordless.logout(), function(req, res) {
   res.redirect('/');
 });
-
-
-var users = [
-  { id: 1, email: 'sinisa.mikulic@gmail.com', savingsData: {} },
-  { id: 2, email: 'frut3k@hotmail.com', savingsData: {} }
-];
 
 /* POST login screen. */
 router.post('/sendtoken', 
   passwordless.requestToken(
     // Simply accept every user
     function(user, delivery, callback) {
-      
-      for (var i = users.length - 1; i >= 0; i--) {
-        if(users[i].email === user.toLowerCase()) {
-            return callback(null, users[i].email);
+
+      // check if user already exists, if not, create a new one
+      User.findOne({email: req.params.user_email}, function(err, user) {
+        if (user) {
+          console.log('User exists!')
+        } else {
+          console.log('User non existing')
         }
-      }
-      callback(null, null);
+        
+      });
+
+      callback(null, user.toLowerCase());
     }),
     function(req, res) {
       // Success!
@@ -53,11 +50,44 @@ router.post('/sendtoken',
 });
 
 
-/**
- * Deliver user data
-*/
-router.get('/getuser', function(req, res) {
-  return res.send(req.user || null);
+// USERS
+
+/* POST create a user. */
+router.post('/api/users', function(req,res) {
+  console.log('POST: ', '/api/users');
+      
+  var user = new User();      // create a new instance of the User model
+  user.email = req.body.email;  // set the user email (comes from the request)
+
+  // save the user and check for errors
+  user.save(function(err) {
+      if (err)
+        res.send(err);
+
+      res.json({ message: 'User created!' });
+  });     
+});
+/* GET all users. */
+router.get('/api/users', function(req, res) {
+  console.log('GET: ', '/api/users/');
+
+  User.find(function(err, users) {
+    if (err)
+      res.send(err);
+
+    res.json(users);
+  });
+});
+/* GET user by email. */
+router.get('/api/users/:user_email', function(req, res) {
+  console.log('GET: ', '/api/users/:user_email');
+
+  User.findOne({email: req.params.user_email}, function(err, user) {
+    if (err)
+      res.send(err);
+
+    res.json(user);
+  });
 });
 
 

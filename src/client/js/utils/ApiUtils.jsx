@@ -11,9 +11,8 @@ export default {
      * This is called right after log in.
      */
     retrieveUserObject() {
-        const url = `http://${baseUrl}/getuser`;
+        const url = `http://${baseUrl}/api/users/:user_email`;
         get(url).then(function(response) {
-            console.log('gg?')
             ServerActionCreators.receiveUserObject(response.data);
         }, function (error) {
             console.error("Failed to retrieve user data!", error);
