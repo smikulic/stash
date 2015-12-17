@@ -13,45 +13,43 @@ let _userObject = {};
 
 
 const UserStore = assign({}, EventEmitter.prototype, {
-    getUser() {
-        return _userObject;
-    },
+  getUser() {
+    return _userObject;
+  },
 
-    emitChange() {
-        this.emit(CHANGE_EVENT);
-    },
+  emitChange() {
+    this.emit(CHANGE_EVENT);
+  },
 
-    /**
-     * @param {function} callback
-     */
-    addChangeListener(callback) {
-        this.on(CHANGE_EVENT, callback);
-    },
+  /**
+   * @param {function} callback
+   */
+  addChangeListener(callback) {
+    this.on(CHANGE_EVENT, callback);
+  },
 
-    /**
-     * @param {function} callback
-     */
-    removeChangeListener(callback) {
-        this.removeListener(CHANGE_EVENT, callback);
-    }
+  /**
+   * @param {function} callback
+   */
+  removeChangeListener(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  }
 });
 
 // Register to handle all updates
 UserStore.dispatchToken = AppDispatcher.register(function (payload) {
-    const action = payload.action;
-    switch (action.actionType) {
-        case UserConstants.USER_RECEIVE:
-            _userObject = {
-              currentUser: action.userObject
-            };
-            UserStore.emitChange();
-            break;
+  const action = payload.action;
+  switch (action.actionType) {
+    case UserConstants.USER_RECEIVE:
+      _userObject = action.userObject;
+      UserStore.emitChange();
+      break;
 
-        default:
-            return true;
-    }
+    default:
+      return true;
+  }
 
-    return true; // No errors.  Needed by promise in dispatcher.
+  return true; // No errors.  Needed by promise in dispatcher.
 });
 
 export default UserStore;

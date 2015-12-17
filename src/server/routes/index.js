@@ -31,18 +31,16 @@ router.post('/sendtoken',
   passwordless.requestToken(
     // Simply accept every user
     function(user, delivery, callback) {
-
       // check if user already exists, if not, create a new one
-      User.findOne({email: req.params.user_email}, function(err, user) {
+      User.findOne({email: user}, function(err, user) {
         if (user) {
           console.log('User exists!')
+          callback(null, user.id);
         } else {
           console.log('User non existing')
+          //callback(null, null);
         }
-        
       });
-
-      callback(null, user.toLowerCase());
     }),
     function(req, res) {
       // Success!
@@ -79,10 +77,10 @@ router.get('/api/users', function(req, res) {
   });
 });
 /* GET user by email. */
-router.get('/api/users/:user_email', function(req, res) {
-  console.log('GET: ', '/api/users/:user_email');
+router.get('/api/users/:user_id', function(req, res) {
+  console.log('GET: ', '/api/users/:user_id');
 
-  User.findOne({email: req.params.user_email}, function(err, user) {
+  User.findOne({_id: req.params.user_id}, function(err, user) {
     if (err)
       res.send(err);
 

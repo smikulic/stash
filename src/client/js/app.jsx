@@ -26,46 +26,45 @@ const PureRendermixin = React.addons.PureRenderMixin;
 window.React = React;
 
 function getStateFromStore() {
-    console.log(UserStore.getUser())
-    return {
-        userObject: UserStore.getUser()
-    }
+  return {
+    userObject: UserStore.getUser()
+  }
 }
 
 const App = React.createClass({
-    mixins: [PureRendermixin],
+  mixins: [PureRendermixin],
 
-    componentDidMount() {
-      UserStore.addChangeListener(this._onChange);
-      ApiUtils.retrieveUserObject();
-    },
+  componentDidMount() {
+    UserStore.addChangeListener(this._onChange);
+    ApiUtils.retrieveUserObject();
+  },
 
-    componentWillUnmount() {
-        UserStore.removeChangeListener(this._onChange);
-    },
+  componentWillUnmount() {
+      UserStore.removeChangeListener(this._onChange);
+  },
 
-    getInitialState() {
-        return getStateFromStore();
-    },
+  getInitialState() {
+      return getStateFromStore();
+  },
 
-    _onChange() {
-        this.setState(getStateFromStore());
-    },
+  _onChange() {
+      this.setState(getStateFromStore());
+  },
 
-    render() {
-        return (
-            <div className="container-fluid">
-                {/* The Modal component */}
-                <Modal />
+  render() {
+    return (
+      <div className="container-fluid">
+        {/* The Modal component */}
+        <Modal />
 
-                {/* The MainFrame component is outside the routes, and can be animated seperately */}
-                <Navigation user={this.state.userObject} prev={this.props.prev} {...this.props} />
+        {/* The MainFrame component is outside the routes, and can be animated seperately */}
+        <Navigation prev={this.props.prev} {...this.props} />
 
-                {/* Dynamic part of the pages, affected by routes */}
-                <RouteHandler {...this.state} {...this.props} />
-            </div>
-        );
-    }
+        {/* Dynamic part of the pages, affected by routes */}
+        <RouteHandler {...this.state} {...this.props} />
+      </div>
+    );
+  }
 });
 
 const routes = (
