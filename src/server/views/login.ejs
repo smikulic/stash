@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Stash - track your financial goals.</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="shortcut icon" type="image/png" href="favicon.png"/>
+  </head>
   <body>
-    <h1>Passwordless - Login</h1>
-    <p>
-    User: 
-    <% if(user) { %>
-      <%= user %> (<a href='/logout'>logout</a>)
-    <% } else { %>
-      Not logged in
-    <% } %>
-    </p>
+    <div class="background-image"></div>
+    <div class="welcome-container">
+      <h1 class="headline">Login / Register</h1>
     <p>
     <form action="/sendtoken" method="POST">
       Email:
@@ -19,11 +19,9 @@
     </p>
     <ul>
       <li>
-        <a href='/'>Back to homepage</a>
-      </li>
-      <li>
-        <a href='/restricted'>Restricted page</a>
+        <a href='/'>Back to Welcome page</a>
       </li>
     </ul>
+    </div>
   </body>
 </html>

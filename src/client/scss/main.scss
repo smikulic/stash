@@ -5,7 +5,9 @@
 @import "config/settings.scss";
 @import "config/utilities.scss";
 
-// Layout
+// Layout - Server
+@import "layout/welcome.scss";
+// Layout - Client
 @import "layout/navigation.scss";
 
 // Modules

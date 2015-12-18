@@ -1025,6 +1025,28 @@ hr {
   color: #FF5252;
   border-bottom: 1px solid #FF5252; }
 
+.background-image {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  display: block;
+  background: url("images/welcome.png") repeat;
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -o-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: blur(1px); }
+
+.welcome-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background-color: white; }
+
 .navigation {
   height: 50px;
   line-height: 49px;
