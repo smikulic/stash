@@ -9,19 +9,11 @@
   <body>
     <div class="background-image"></div>
     <div class="welcome-container">
-      <h1 class="headline">Login / Register</h1>
-    <p>
-    <form action="/sendtoken" method="POST">
-      Email:
-      <br><input name="user" type="text">
-      <br><input type="submit" value="Login / Register">
-    </form>
-    </p>
-    <ul>
-      <li>
-        <a href='/'>Back to Welcome page</a>
-      </li>
-    </ul>
+      <h1 class="headline">You will receive sign in token</h1>
+      <form class="form-signin" action="/sendtoken" method="POST">
+        <br><input name="user" type="email" placeholder="Enter your email here">
+        <br><input class="btn-start" type="submit" value="Sign in">
+      </form>
     </div>
   </body>
 </html>

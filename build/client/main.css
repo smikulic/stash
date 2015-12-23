@@ -1026,10 +1026,10 @@ hr {
   border-bottom: 1px solid #FF5252; }
 
 .background-image {
+  z-index: 1;
   position: fixed;
   left: 0;
   right: 0;
-  z-index: 1;
   display: block;
   background: url("images/welcome.png") repeat;
   width: 100%;
@@ -1041,11 +1041,58 @@ hr {
   filter: blur(1px); }
 
 .welcome-container {
-  position: fixed;
-  left: 0;
-  right: 0;
   z-index: 10;
-  background-color: white; }
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 20%;
+  text-align: center;
+  color: #727272;
+  background-color: rgba(255, 255, 255, 0.75);
+  border-radius: 3px;
+  box-shadow: 0 3px 12px -2px #B6B6B6; }
+
+.welcome-container .headline {
+  padding: 0 15px; }
+
+.btn-start {
+  display: block;
+  margin: 15px auto;
+  padding: 10px;
+  position: relative;
+  width: 80%;
+  color: #FFFFFF;
+  background-color: #009688;
+  border-radius: 3px;
+  box-shadow: 0 3px 12px -2px #B6B6B6;
+  cursor: pointer; }
+
+.btn-start:hover, .btn-start:active, .btn-start:focus {
+  color: #FFFFFF;
+  text-decoration: none;
+  box-shadow: 0 6px 14px -2px #B6B6B6; }
+
+.btn-start:active {
+  top: 1px; }
+
+.btn-back {
+  display: block;
+  margin: 15px auto;
+  padding: 5px 10px;
+  width: 100px;
+  color: #FFFFFF;
+  background-color: #FF5252;
+  border-radius: 3px;
+  cursor: pointer; }
+
+.form-signin input {
+  outline: 0;
+  border: 0; }
+
+.form-signin input[type="email"] {
+  padding-left: 10px;
+  width: 80%;
+  height: 40px; }
 
 .navigation {
   height: 50px;

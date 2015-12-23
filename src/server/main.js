@@ -65,11 +65,12 @@ passwordless.addDelivery(
     function(tokenToSend, uidToSend, recipient, callback) {
         // Send out token
         smtpServer.send({
-           text:    'Hello!\nYou can now access your account here: ' 
-                + host + '?token=' + tokenToSend + '&uid=' + encodeURIComponent(uidToSend), 
+           text:    'Hello ' + recipient + '!\nYou can now access Stash by clicking on this token: ' 
+                + host + '?token=' + tokenToSend + '&uid=' + encodeURIComponent(uidToSend) 
+                + '\n\nEnjoy setting up your financial goals, \nStash Team', 
            from:    yourEmail, 
            to:      recipient,
-           subject: 'Token for ' + host
+           subject: 'Stash - Sign in Token!'
         }, function(err, message) { 
             if(err) {
                 console.log(err);

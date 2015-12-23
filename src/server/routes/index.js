@@ -32,12 +32,23 @@ router.post('/sendtoken',
     // Simply accept every user
     function(user, delivery, callback) {
       // check if user already exists, if not, create a new one
-      User.findOne({email: user}, function(err, user) {
-        if (user) {
-          console.log('User exists!')
-          callback(null, user.id);
+      User.findOne({email: user}, function(err, existingUser) {
+        if (existingUser) {
+          callback(null, existingUser.id);
         } else {
-          console.log('User non existing')
+          var newUser = new User();      // create a new instance of the User model
+          newUser.email = user;  // set the user email (comes from the request)
+
+          // save the user
+          newUser.save();
+
+          User.findOne({email: user}, function(err, existingUser) {
+            if (existingUser) {
+              callback(null, existingUser.id);
+            } else {
+              console.log("still no user?")
+            }
+          });
           //callback(null, null);
         }
       });
@@ -53,7 +64,11 @@ router.post('/sendtoken',
 /* POST create a user. */
 router.post('/api/users', function(req,res) {
   console.log('POST: ', '/api/users');
-      
+  
+  console.log(req.body)
+  console.log(res)
+  console.log(newUser)
+
   var user = new User();      // create a new instance of the User model
   user.email = req.body.email;  // set the user email (comes from the request)
 

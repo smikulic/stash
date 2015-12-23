@@ -1,9 +1,9 @@
 // Used on the server - Welcome screen
 .background-image {
+  z-index: 1;
   position: fixed;
   left: 0;
   right: 0;
-  z-index: 1;
   display: block;
   background: url('images/welcome.png') repeat;
   width: 100%;
@@ -15,9 +15,61 @@
   filter: blur(1px);
 }
 .welcome-container {
-  position: fixed;
-  left: 0;
-  right: 0;
   z-index: 10;
-  background-color: white;
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 20%;
+  text-align: center;
+  color: $secondaryTextColor;
+  background-color: rgba(255,255,255,0.75);
+  border-radius: $bRadius-default;
+  box-shadow: $boxShadow-default;
+}
+.welcome-container .headline {
+  padding: 0 15px;
+}
+
+.btn-start {
+  display: block;
+  margin: 15px auto;
+  padding: 10px;
+  position: relative;
+  width: 80%;
+  color: $textPrimaryColor;
+  background-color: $primaryColor;
+  border-radius: $bRadius-default;
+  box-shadow: $boxShadow-default;
+  cursor: pointer;
+}
+.btn-start:hover, .btn-start:active, .btn-start:focus {
+  color: $textPrimaryColor;
+  text-decoration: none;
+  box-shadow: $boxShadow-hover;
+}
+.btn-start:active {
+  top: 1px;
+}
+
+.btn-back {
+  display: block;
+  margin: 15px auto;
+  padding: 5px 10px;
+  width: 100px;
+  color: $textPrimaryColor;
+  background-color: $accentColor;
+  border-radius: $bRadius-default;
+  cursor: pointer;
+}
+
+.form-signin input {
+  outline: 0;
+  border: 0;
+}
+
+.form-signin input[type="email"] {
+  padding-left: 10px;
+  width: 80%;
+  height: 40px;
+
 }
