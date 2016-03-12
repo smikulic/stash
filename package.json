@@ -37,7 +37,6 @@
     "react": "^0.13.3",
     "react-router": "^0.13.4",
     "uuid": "^2.0.1",
-    // Moved Gulp to dependencies so it can run in production
     "gulp": "^3.9.0",
     "gulp-nodemon": "^2.0.4",
     "gulp-sass": "^2.0.4",
