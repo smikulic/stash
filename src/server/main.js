@@ -33,7 +33,7 @@ app.use(express.static(__dirname + '/../../build/client'))
 /**
 * Email setup
 */
-var yourEmail = 'sinisa.mikulic@gmail.com';
+var yourEmail = 'stashbudget@gmail.com';
 var yourPwd = nodeConfig;
 var yourSmtp = 'smtp.gmail.com';
 var smtpServer  = email.server.connect({
