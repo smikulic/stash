@@ -87,7 +87,7 @@ gulp.task('serve', ['nodemon', 'sass'], function () {
 	// null for server because we already have node server running
 	browserSync.init(null, {
 		proxy: "http://localhost:8080",
-		port: 9001
+		port: 5000
 	});
 
 	gulp.watch([paths.clientSCSS + '**/*.scss'], browserSync.reload);
@@ -99,7 +99,7 @@ gulp.task('serve', ['nodemon', 'sass'], function () {
  * Heroku production gulp tasks
  */
 gulp.task('heroku:production', function(){
-  console.log("HEROKU PRODUCTION !")
+  console.log("Heroku production!")
 })
 
 

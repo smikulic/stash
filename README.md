@@ -19,26 +19,36 @@
 
 `brew install mongodb`
 
+Setup heroku https://devcenter.heroku.com/articles/getting-started-with-nodejs#set-up
+
 Go to user root and run `sudo mkdir -p /data/db` to create default location where mongod process will write data,
 and set read and write permissions to that directory
 
 Start Mongo DB with `sudo mongod` and then
 
-create file `node.config.js` in root directory and write
-```
-var _pw = "YOUR_EMAIL_CLIENT_PASSWORD";
+create file `.env` in root directory and write
+`email_pw=YOUR_EMAIL_PASSWORD`
 
-module.exports = _pw;
-```
+start server with `heroku local web`
 
-start server with `gulp serve`
+Go to `localhost:5000/`
 
-`Go to localhost:/9001`
+ALTERNATIVE: run `gulp serve` if you don't wanna setup heroku
+
+## Deployment
+Deployment to Heroku is done automatically on push to master. It will run build process with Gulp on production with some
+changes to the environment variables (such as port to run on, production domain for email signup and MongoLab database).
+Useful tips: https://devcenter.heroku.com/articles/getting-started-with-nodejs
 
 
 ## Commands
-Start server: `gulp serve`
+Start server: `gulp serve` or `heroku local web`
 Start DB: `sudo mongod`
+Login to production: `heroku login`
+Log production server: `heroku logs -t`
+Production manual deploy: `heroku push master`
+Production bash: `heroku run bash`
+Production config vars: `heroku config`
 
 
 ## Package explanation

@@ -31,10 +31,10 @@ app.use(express.static(__dirname + '/../../build/client'))
 var yourEmail = 'stashbudget@gmail.com';
 var yourSmtp = 'smtp.gmail.com';
 var smtpServer  = email.server.connect({
-   user:    yourEmail, 
-   password: process.env.email_pw, 
-   host:    yourSmtp, 
-   ssl:     true
+   user: yourEmail, 
+   password: process.env.email_pw,
+   host: yourSmtp,
+   ssl: true
 });
 
 
@@ -45,11 +45,10 @@ var pathToMongoDb = process.env.MONGOLAB_URI || 'mongodb://localhost/passwordles
 var pathToMongoDbApp = process.env.MONGOLAB_URI || 'mongodb://localhost/stashApp';
 
 
-
 /**
 * Path to be send via email
 */
-var host = process.env.PORT || 'http://localhost:9001/';
+var host = (process.env.NODE_ENV == 'development') ? 'http://localhost:5000/' : 'https://stashbudget.herokuapp.com';
 
 
 /**
@@ -60,11 +59,11 @@ passwordless.addDelivery(
     function(tokenToSend, uidToSend, recipient, callback) {
         // Send out token
         smtpServer.send({
-           text:    'Hello ' + recipient + '!\nYou can now access Stash by clicking on this token: ' 
+           text: 'Hello ' + recipient + '!\nYou can now access Stash by clicking on this token: ' 
                 + host + '?token=' + tokenToSend + '&uid=' + encodeURIComponent(uidToSend) 
                 + '\n\nEnjoy setting up your financial goals, \nStash Team', 
-           from:    yourEmail, 
-           to:      recipient,
+           from: yourEmail, 
+           to: recipient,
            subject: 'Stash - Sign in Token!'
         }, function(err, message) { 
             if(err) {
