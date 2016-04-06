@@ -11,14 +11,9 @@ var passwordless = require('passwordless');
 var MongoStore = require('passwordless-mongostore');
 var email   = require("emailjs");
 var mongoose = require('mongoose');
-var nodeConfig;
 
 var routes = require('./routes/index');
 
-
-if (process.env.NODE_ENV === 'development') {
-    nodeConfig = require('../../node.config.js');
-}
 
 /**
 * Bootstrap express app
@@ -34,11 +29,10 @@ app.use(express.static(__dirname + '/../../build/client'))
 * Email setup
 */
 var yourEmail = 'stashbudget@gmail.com';
-var yourPwd = nodeConfig;
 var yourSmtp = 'smtp.gmail.com';
 var smtpServer  = email.server.connect({
    user:    yourEmail, 
-   password: yourPwd, 
+   password: process.env.email_pw, 
    host:    yourSmtp, 
    ssl:     true
 });
