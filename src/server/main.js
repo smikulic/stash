@@ -22,7 +22,7 @@ var app = new express();
 app.set('port', process.env.PORT || 8080);
 
 app.use(express.static(__dirname + '/../../build/client'))
-.listen(8080);
+.listen(process.env.PORT || 8080);
 
 
 /**
@@ -49,7 +49,7 @@ var pathToMongoDbApp = process.env.MONGOLAB_URI || 'mongodb://localhost/stashApp
 /**
 * Path to be send via email
 */
-var host = 'http://localhost:9001/';
+var host = process.env.PORT || 'http://localhost:9001/';
 
 
 /**
