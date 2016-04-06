@@ -95,6 +95,13 @@ gulp.task('serve', ['nodemon', 'sass'], function () {
 });
 
 
+/**
+ * Heroku production gulp tasks
+ */
+gulp.task('heroku:production', function(){
+  console.log("HEROKU PRODUCTION !")
+})
+
 
 /* Functions
 ============================================= */
