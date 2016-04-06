@@ -47,8 +47,9 @@ var smtpServer  = email.server.connect({
 /**
 * MongoDB
 */
-var pathToMongoDb = 'mongodb://localhost/passwordless-simple-mail';
-var pathToMongoDbApp = 'mongodb://localhost/stashApp';
+var pathToMongoDb = 'mongodb://heroku_dv99kzr6:heroku_dv99kzr6@ds011419.mlab.com:11419/heroku_dv99kzr6'; //'mongodb://localhost/passwordless-simple-mail';
+var pathToMongoDbApp = 'mongodb://heroku_dv99kzr6:heroku_dv99kzr6@ds011419.mlab.com:11419/heroku_dv99kzr6';//'mongodb://localhost/stashApp';
+
 
 
 /**
