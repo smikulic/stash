@@ -12,7 +12,7 @@ export default {
      */
     retrieveUserObject() {
       const loggedInUserId = document.getElementById('userLoggedIn').getAttribute("userLoggedIn");
-      const url = `http://${baseUrl}/api/users/${loggedInUserId}`;
+      const url = `https://${baseUrl}/api/users/${loggedInUserId}`;
 
       get(url).then(function(response) {
         ServerActionCreators.receiveUserObject(response.data);

@@ -48,7 +48,6 @@ var pathToMongoDbApp = process.env.MONGOLAB_URI || 'mongodb://localhost/stashApp
 /**
 * Path to be send via email
 */
-console.log("ENVIRONMENT LOADED: ", process.env.NODE_ENV)
 var host = (process.env.environment == 'development') ? 'http://localhost:5000/' : 'https://stashbudget.herokuapp.com';
 
 
