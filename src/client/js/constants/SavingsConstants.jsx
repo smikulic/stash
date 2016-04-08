@@ -3,9 +3,9 @@
 import keyMirror from 'keymirror';
 
 const SavingsConstants = keyMirror({
-    SAVINGS_ADD: null,
-    SAVINGS_DELETE: null,
-    SAVINGS_SET_MODAL: null
+  SAVINGS_DELETE: null,
+  SAVINGS_SET_MODAL: null,
+  USER_GOALS_RECEIVE: null
 });
 
 export default SavingsConstants;

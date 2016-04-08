@@ -1,4 +1,4 @@
-# Stash app
+# ScroogeVault app
 
 
 ## Stack:

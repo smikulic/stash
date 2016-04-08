@@ -4,11 +4,11 @@ import React from 'react/addons';
 
 const AddSaving = React.createClass({
 	getInitialState() {
-	    return {active: false};
+    return {active: false};
 	},
 	
 	componentDidMount () {
-	      this.setState({active: this.props.active});
+    this.setState({active: this.props.active});
 	},
 
 	_closeModal () {

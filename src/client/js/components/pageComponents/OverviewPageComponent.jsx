@@ -8,7 +8,7 @@ const OverviewPage = React.createClass({
   mixins: [PureRendermixin],
 
   render () {
-    let userName = this.props.userObject.email;
+    let userName = this.props.userObject.username;
     let headline = null;
 
     if (userName) {

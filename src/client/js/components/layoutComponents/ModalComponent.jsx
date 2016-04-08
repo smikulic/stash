@@ -5,29 +5,29 @@ import SavingsStore from '../../stores/SavingsStore.jsx';
 import SavingsActionCreators from '../../actions/SavingsActionCreators.jsx';
 
 function getStateFromStore() {
-    return {
-        addSavingModal: SavingsStore.getSavingModal(),
-        titleValidate: true,
-        valueValidate: true,
-        dueValidate: true
-    }
+  return {
+    addSavingModal: SavingsStore.getSavingModal(),
+    titleValidate: true,
+    valueValidate: true,
+    dueValidate: true
+  }
 }
 
 const Modal = React.createClass({
 	componentDidMount () {
-        SavingsStore.addChangeListener(this._onChange);
+      SavingsStore.addChangeListener(this._onChange);
     },
 
     componentWillUnmount () {
-        SavingsStore.removeChangeListener(this._onChange);
+      SavingsStore.removeChangeListener(this._onChange);
     },
 
     getInitialState () {
-        return getStateFromStore();
+      return getStateFromStore();
     },
 
     _onChange () {
-        this.setState(getStateFromStore());
+      this.setState(getStateFromStore());
     },
 
 	_closeModal () {
@@ -51,7 +51,12 @@ const Modal = React.createClass({
 		}
 
 		if (title && value && due) {
-			SavingsActionCreators.addSaving(title, value, saved, due);	
+      SavingsActionCreators.addSavingsGoal({
+        title: title,
+        value: value,
+        saved: saved || null,
+        due: due
+      });
 			SavingsActionCreators.setAddSavingModal(false);
 		}
 	},

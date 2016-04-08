@@ -8,100 +8,104 @@ import SavingsStore from '../../stores/SavingsStore.jsx';
 import SavingsActionCreators from '../../actions/SavingsActionCreators.jsx';
 
 function getStateFromStore() {
-    return {
-        savingsData: SavingsStore.getSavingsData()
-    }
+  return {
+    savingsData: SavingsStore.getSavingsData()
+  }
 }
 
 const SavingsPage = React.createClass({
-    componentDidMount () {
-        SavingsStore.addChangeListener(this._onChange);
-    },
+  componentDidMount () {
+    SavingsStore.addChangeListener(this._onChange);
+  },
 
-    componentWillUnmount () {
-        SavingsStore.removeChangeListener(this._onChange);
-    },
+  componentWillUnmount () {
+    SavingsStore.removeChangeListener(this._onChange);
+  },
 
-    getInitialState () {
-        return getStateFromStore();
-    },
+  componentWillMount() {
+    SavingsActionCreators.loadSavingsGoals();  
+  },
 
-    _onChange () {
-        this.setState(getStateFromStore());
-    },
+  getInitialState () {
+    return getStateFromStore();
+  },
 
-    _addSavings () {
-        SavingsActionCreators.setAddSavingModal(true);
-    },
+  _onChange () {
+    this.setState(getStateFromStore());
+  },
 
-    _deleteSaving (e) {
-        e.preventDefault();
-        SavingsActionCreators.deleteSaving(e.target.parentNode.id);
-    },
+  _addSavings () {
+    SavingsActionCreators.setAddSavingModal(true);
+  },
 
-    render () {
-        let savingsData = this.state.savingsData;
-        let savingsListNodes = null;
+  _deleteSaving (e) {
+    e.preventDefault();
+    SavingsActionCreators.deleteSaving(e.target.parentNode.id);
+  },
 
-        if (savingsData) {
-            savingsListNodes = _.map(savingsData, (obj, index) => {
-                let key = uuid.v4();
-                let cx = "col-sm-12 savingsList-content-element";
-                let markNode = null;
-                let currentSavings = obj.initialSavings;
-                let targetPrice = obj.price;
-                let percentage = currentSavings/targetPrice * 100;
-                let dueDate = obj.due;
-                let duration = moment.duration(moment(dueDate).diff(moment())).humanize();
-                let durationMonthly = moment.duration(moment(dueDate).diff(moment())).asMonths();
-                let monthly = (targetPrice - currentSavings) / Math.round(durationMonthly);
+  render () {
+    let savingsData = this.state.savingsData;
+    let savingsListNodes = null;
 
-                if (currentSavings === targetPrice) {
-                    cx += " savingsList-content-element--done";
-                    markNode = <i className="material-icons">check</i>;
-                }
+    if (savingsData) {
+      savingsListNodes = _.map(savingsData, (obj, index) => {
+        let key = uuid.v4();
+        let cx = "col-sm-12 savingsList-content-element";
+        let markNode = null;
+        let currentSavings = obj.initialSavings;
+        let targetPrice = obj.price;
+        let percentage = currentSavings/targetPrice * 100;
+        let dueDate = obj.due;
+        let duration = moment.duration(moment(dueDate).diff(moment())).humanize();
+        let durationMonthly = moment.duration(moment(dueDate).diff(moment())).asMonths();
+        let monthly = (targetPrice - currentSavings) / Math.round(durationMonthly);
 
-                return (
-                    <div key={key} className={cx} id={index}>
-                        <div className="col-xs-2 col-sm-2 u-text-center completed">
-                            {markNode}
-                            <div className="completed-percentage">{percentage}%</div>
-                            <div className="completed-value">{currentSavings}/{targetPrice}</div>
-                        </div>
-                        <div className="col-xs-5 col-sm-5 title">{obj.title}</div>
-                        <div className="col-xs-2 col-sm-2 monthly">{Math.round(monthly)} EUR</div>
-                        <div className="col-xs-3 col-sm-3 due">
-                            <div className="due-date">{moment(dueDate).format('ll')}</div>
-                            <div className="due-in">in {duration}</div>
-                        </div>
-                        <i className="material-icons deleteSaving" onClick={this._deleteSaving}>delete</i>
-                    </div>
-                );
-            });
+        if (currentSavings === targetPrice) {
+          cx += " savingsList-content-element--done";
+          markNode = <i className="material-icons">check</i>;
         }
 
         return (
-            <div className="page">
-                <div className="btn-add-wrapper">
-                    <div className="btn-add" onClick={this._addSavings}><i className="material-icons">add</i></div>
-                </div>
-                <div className="row">
-                	<div className="col-sm-12">
-                		<h2>{this.props.userObject} Savings</h2>
-                		<div className="row savingsList">
-                            <div className="col-sm-12 savingsList-header">
-                                <div className="col-xs-2 col-sm-2 u-text-center savingsList-header-element">Completed</div>
-                    			<div className="col-xs-5 col-sm-5 savingsList-header-element">Title</div>
-                                <div className="col-xs-2 col-sm-2 savingsList-header-element">Monthly</div>
-                                <div className="col-xs-3 col-sm-3 savingsList-header-element">Due</div>
-                            </div>
-                            {savingsListNodes}
-                		</div>
-                	</div>
-                </div>	
+          <div key={key} className={cx} id={index}>
+            <div className="col-xs-2 col-sm-2 u-text-center completed">
+              {markNode}
+              <div className="completed-percentage">{percentage}%</div>
+              <div className="completed-value">{currentSavings}/{targetPrice}</div>
             </div>
+            <div className="col-xs-5 col-sm-5 title">{obj.title}</div>
+            <div className="col-xs-2 col-sm-2 monthly">{Math.round(monthly)} EUR</div>
+            <div className="col-xs-3 col-sm-3 due">
+              <div className="due-date">{moment(dueDate).format('ll')}</div>
+              <div className="due-in">in {duration}</div>
+            </div>
+            <i className="material-icons deleteSaving" onClick={this._deleteSaving}>delete</i>
+          </div>
         );
+      });
     }
+
+    return (
+      <div className="page">
+        <div className="btn-add-wrapper">
+          <div className="btn-add" onClick={this._addSavings}><i className="material-icons">add</i></div>
+        </div>
+        <div className="row">
+        	<div className="col-sm-12">
+        		<h2>{this.props.userObject.username} Goals</h2>
+        		<div className="row savingsList">
+              <div className="col-sm-12 savingsList-header">
+                <div className="col-xs-2 col-sm-2 u-text-center savingsList-header-element">Completed</div>
+      			    <div className="col-xs-5 col-sm-5 savingsList-header-element">Title</div>
+                <div className="col-xs-2 col-sm-2 savingsList-header-element">Monthly</div>
+                <div className="col-xs-3 col-sm-3 savingsList-header-element">Due</div>
+              </div>
+              {savingsListNodes}
+        		</div>
+        	</div>
+        </div>	
+      </div>
+    );
+  }
 });
 
 export default SavingsPage;

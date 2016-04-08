@@ -2,7 +2,7 @@
   "name": "stash",
   "repository": "git@github.com:smikulic/stash.git",
   "version": "1.1.0",
-  "description": "Stash app, track your financial goals.",
+  "description": "ScroogeVault app, track your financial goals.",
   "main": "",
   "scripts": {
     "start": "node index.js"
