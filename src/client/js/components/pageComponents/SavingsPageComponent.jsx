@@ -40,6 +40,7 @@ const SavingsPage = React.createClass({
 
   _deleteSaving (e) {
     e.preventDefault();
+    console.log(e.target.parentNode.id)
     SavingsActionCreators.deleteSaving(e.target.parentNode.id);
   },
 
@@ -52,8 +53,8 @@ const SavingsPage = React.createClass({
         let key = uuid.v4();
         let cx = "col-sm-12 savingsList-content-element";
         let markNode = null;
-        let currentSavings = obj.initialSavings;
-        let targetPrice = obj.price;
+        let currentSavings = obj.saved;
+        let targetPrice = obj.value;
         let percentage = currentSavings/targetPrice * 100;
         let dueDate = obj.due;
         let duration = moment.duration(moment(dueDate).diff(moment())).humanize();

@@ -49,7 +49,7 @@ var pathToMongoDbApp = process.env.MONGOLAB_URI || 'mongodb://localhost/stashApp
 /**
 * Path to be send via email
 */
-var host = (process.env.environment == 'development') ? 'http://localhost:5000/' : 'https://stashbudget.herokuapp.com';
+var host = (process.env.environment == 'development') ? 'http://localhost:5000/' : 'http://scroogevault.co';
 
 
 /**

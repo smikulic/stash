@@ -16,7 +16,7 @@ export default {
   retrieveUserObject() {
     loggedInUserId = document.getElementById('userLoggedIn').getAttribute("userLoggedIn");
     SERVER_ENV = document.getElementById('userLoggedIn').getAttribute("server_env");
-    const url = (SERVER_ENV == 'development') ? `http://${baseUrl}/api/users/${loggedInUserId}` : `https://${baseUrl}/api/users/${loggedInUserId}`;
+    const url = `http://${baseUrl}/api/users/${loggedInUserId}`;
 
     get(url).then((response) => {
       ServerActionCreators.receiveUserObject(response.data);
@@ -29,9 +29,8 @@ export default {
    * Create a new savings goal with the given params.
    */
   addUserSavingsGoal(params) {
-    const url = (SERVER_ENV == 'development') ? `http://${baseUrl}/api/createGoal` : `https://${baseUrl}/api/createGoal`;
+    const url = `http://${baseUrl}/api/createGoal`;
     params.userId = loggedInUserId;
-    console.log(params)
 
     post(url, params)
       .then((response) => {
@@ -46,8 +45,7 @@ export default {
    */
   retrieveUserGoalsObject() {
     loggedInUserId = document.getElementById('userLoggedIn').getAttribute("userLoggedIn");
-    SERVER_ENV = document.getElementById('userLoggedIn').getAttribute("server_env");
-    const url = (SERVER_ENV == 'development') ? `http://${baseUrl}/api/goals/${loggedInUserId}` : `https://${baseUrl}/api/goals/${loggedInUserId}`;
+    const url = `http://${baseUrl}/api/goals/${loggedInUserId}`;
 
     get(url).then((response) => {
       ServerActionCreators.receiveUserGoalsObject(response.data);
