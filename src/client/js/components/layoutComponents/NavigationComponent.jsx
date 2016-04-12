@@ -9,14 +9,14 @@ const Navigation = React.createClass({
 
   render() {
     let overviewElementNode = <div className="navigation-element">Overview</div>;
-    let savingsElementNode = <div className="navigation-element">Savings</div>;
+    let savingsElementNode = <div className="navigation-element">Savings Goals</div>;
 
     switch(this.props.activeRoutes[0]) {
       case "overviewPage":
         overviewElementNode = <div className="navigation-element active">Overview</div>;
         break;
       case "savingsPage":
-        savingsElementNode = <div className="navigation-element active">Savings</div>;
+        savingsElementNode = <div className="navigation-element active">Savings Goals</div>;
         break;
     }
 

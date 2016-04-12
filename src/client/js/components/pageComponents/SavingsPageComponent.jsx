@@ -74,7 +74,7 @@ const SavingsPage = React.createClass({
               <div className="completed-value">{currentSavings}/{targetPrice}</div>
             </div>
             <div className="col-xs-5 col-sm-5 title">{obj.title}</div>
-            <div className="col-xs-2 col-sm-2 monthly">{Math.round(monthly)} EUR</div>
+            <div className="col-xs-2 col-sm-2 monthly">{Math.round(monthly)}</div>
             <div className="col-xs-3 col-sm-3 due">
               <div className="due-date">{moment(dueDate).format('ll')}</div>
               <div className="due-in">in {duration}</div>

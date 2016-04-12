@@ -108,7 +108,25 @@ router.get('/api/users/:user_id', function(req, res) {
     res.json(user);
   });
 });
+/* POST Save user income. */
+router.post('/api/users/saveIncome', function(req,res) {
+  console.log('POST: ', '/api/saveIncome');
 
+  // update the user and check for errors
+  User.findOne({_id: req.body.userId}, function(err, user) {
+    if (err)
+      res.send(err);
+
+    user.income = req.body.incomeValue;
+
+    user.save(function(err) {
+      if (err)
+        res.send(err);
+
+      res.json(user);
+    });
+  });   
+});
 
 
 /**

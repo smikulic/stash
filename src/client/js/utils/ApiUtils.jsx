@@ -13,7 +13,7 @@ export default {
    * Call to get the current user object.
    * This is called right after log in.
    */
-  retrieveUserObject() {
+  retrieveUserObject () {
     loggedInUserId = document.getElementById('userLoggedIn').getAttribute("userLoggedIn");
     SERVER_ENV = document.getElementById('userLoggedIn').getAttribute("server_env");
     const url = `http://${baseUrl}/api/users/${loggedInUserId}`;
@@ -28,7 +28,7 @@ export default {
   /**
    * Create a new savings goal with the given params.
    */
-  addUserSavingsGoal(params) {
+  addUserSavingsGoal (params) {
     const url = `http://${baseUrl}/api/createGoal`;
     params.userId = loggedInUserId;
 
@@ -43,7 +43,7 @@ export default {
   /**
    * Call to get the user goals list.
    */
-  retrieveUserGoalsObject() {
+  retrieveUserGoalsObject () {
     loggedInUserId = document.getElementById('userLoggedIn').getAttribute("userLoggedIn");
     const url = `http://${baseUrl}/api/goals/${loggedInUserId}`;
 
@@ -52,5 +52,20 @@ export default {
     }, (error) => {
       console.error("Failed to retrieve user goals data!", error);
     });
+  },
+
+  /**
+   * Save income to user.
+   */
+  addUserIncomeValue (params) {
+    const url = `http://${baseUrl}/api/users/saveIncome`;
+    params.userId = loggedInUserId;
+
+    post(url, params)
+      .then((response) => {
+        // Do nothing
+      }, (error) => {
+        console.error("Failed to save income!", error);
+      });
   }
 };

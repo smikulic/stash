@@ -22,6 +22,9 @@ const SavingsActionCreators = {
       actionType: SavingsConstants.SAVINGS_DELETE,
       id: savingId
     });
+  },
+  addIncomeValue (params) {
+    ApiUtils.addUserIncomeValue(params);
   }
 };
 
