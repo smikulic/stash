@@ -1,5 +1,8 @@
 # ScroogeVault app
 
+[![bitHound Code](https://www.bithound.io/github/smikulic/stash/badges/code.svg)](https://www.bithound.io/github/smikulic/stash)
+[![bitHound Overall Score](https://www.bithound.io/github/smikulic/stash/badges/score.svg)](https://www.bithound.io/github/smikulic/stash)
+[![bitHound Dependencies](https://www.bithound.io/github/smikulic/stash/badges/dependencies.svg)](https://www.bithound.io/github/smikulic/stash/master/dependencies/npm)
 
 ## Stack:
 - ES6
