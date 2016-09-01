@@ -33,7 +33,7 @@ var yourEmail = 'stashbudget@gmail.com';
 var yourSmtp = 'smtp.gmail.com';
 var smtpServer  = email.server.connect({
   user: yourEmail, 
-  password: process.env.email_pw,
+  password: "22StashBudget22",//process.env.email_pw,
   host: yourSmtp,
   ssl: true
 });
