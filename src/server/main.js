@@ -33,7 +33,7 @@ var yourEmail = 'stashbudget@gmail.com';
 var yourSmtp = 'smtp.gmail.com';
 var smtpServer  = email.server.connect({
   user: yourEmail, 
-  password: "22StashBudget22",//process.env.email_pw,
+  password: process.env.email_pw,
   host: yourSmtp,
   ssl: true
 });
@@ -59,6 +59,10 @@ passwordless.init(new MongoStore(pathToMongoDb));
 passwordless.addDelivery(
   function(tokenToSend, uidToSend, recipient, callback) {
     // Send out token
+    console.log(tokenToSend)
+    console.log(uidToSend)
+    console.log(recipient)
+    console.log(callback)
     smtpServer.send({
       text: 'Hello ' + recipient + '!\nYou can now access ScroogeVault by clicking on this token: ' 
         + host + '?token=' + tokenToSend + '&uid=' + encodeURIComponent(uidToSend) 

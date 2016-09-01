@@ -49,7 +49,7 @@ Start server: `gulp serve` or `heroku local web`
 Start DB: `sudo mongod`
 Login to production: `heroku login`
 Log production server: `heroku logs -t`
-Production manual deploy: `heroku push master`
+Production manual deploy: `git push heroku master`
 Production bash: `heroku run bash`
 Production config vars: `heroku config`
 
