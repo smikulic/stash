@@ -138,6 +138,36 @@ const OverviewPage = React.createClass({
                   <div className="overviewStatus-title">Longest Goal</div>
                   <div className="overviewStatus-value">N/A</div>
                 </div>
+                <div className="col-md-12">
+                  <h3>Welcome Sinisa & Leih</h3>
+              <h3>Dashboard: Aug, 2016</h3>
+              <div>
+                <h4>Left to spend 4420 e (33.000 kn)</h4>
+                <div>This month 4220 e (31.500 kn)</div>
+                <div>Old savings 200 e (1.500 kn)</div>
+                <h4>Left to spend by budget 1406 e (10.546 kn)</h4>
+              </div>
+              <div>
+                <h4>Incomes 4220 e (31.650 kn)</h4>
+                <div>Compensation 4200 e (31.500 kn)</div>
+                <ul>
+                  <li>2600 e, Solaris, recurring (19.500 kn)</li>
+                  <li>1600 e, ISVA, recurring (12.000 kn)</li>
+                </ul>
+                <div>Other 20 e (150 kn)</div>
+                <ul>
+                  <li>20 e, Tablet sale (150 kn)</li>
+                </ul>
+              </div>
+              <div>
+                <h4>Expenses</h4>
+                <div>Household 712e (5.341 kn), budget: 1.333 e (10.000 kn)</div>
+                <ul>
+                  <li>697 e, Rent, recurring (5.228 kn)</li>
+                  <li>15 e, Electricity, recurring (113 kn)</li>
+                </ul>
+              </div>
+                </div>
               </div>
         		</div>
         	</div>

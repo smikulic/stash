@@ -15,7 +15,6 @@ import Modal from './components/layoutComponents/ModalComponent.jsx';
 import UserStore from './stores/UserStore.jsx';
 import ApiUtils from './utils/ApiUtils.jsx';
 
-
 /**
  * Necessary Router Variables
  */
