@@ -59,10 +59,7 @@ passwordless.init(new MongoStore(pathToMongoDb));
 passwordless.addDelivery(
   function(tokenToSend, uidToSend, recipient, callback) {
     // Send out token
-    console.log(tokenToSend)
-    console.log(uidToSend)
-    console.log(recipient)
-    console.log(callback)
+    console.log(smtpServer)
     smtpServer.send({
       text: 'Hello ' + recipient + '!\nYou can now access ScroogeVault by clicking on this token: ' 
         + host + '?token=' + tokenToSend + '&uid=' + encodeURIComponent(uidToSend) 
