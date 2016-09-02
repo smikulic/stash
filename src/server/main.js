@@ -32,7 +32,7 @@ app.use(express.static(__dirname + '/../../build/client'))
 var yourEmail = 'stashbudget@gmail.com';
 var yourSmtp = 'smtp.gmail.com';
 var smtpServer  = email.server.connect({
-  user: yourEmail, 
+  user: yourEmail,
   password: process.env.email_pw,
   host: yourSmtp,
   ssl: true
@@ -59,15 +59,14 @@ passwordless.init(new MongoStore(pathToMongoDb));
 passwordless.addDelivery(
   function(tokenToSend, uidToSend, recipient, callback) {
     // Send out token
-    console.log(smtpServer)
     smtpServer.send({
-      text: 'Hello ' + recipient + '!\nYou can now access ScroogeVault by clicking on this token: ' 
-        + host + '?token=' + tokenToSend + '&uid=' + encodeURIComponent(uidToSend) 
-        + '\n\nEnjoy setting up your financial goals, \nScroogeVault Team', 
-      from: yourEmail, 
+      text: 'Hello ' + recipient + '!\nYou can now access ScroogeVault by clicking on this token: '
+        + host + '?token=' + tokenToSend + '&uid=' + encodeURIComponent(uidToSend)
+        + '\n\nEnjoy setting up your financial goals, \nScroogeVault Team',
+      from: yourEmail,
       to: recipient,
       subject: 'ScroogeVault - Sign in Token!'
-    }, function(err, message) { 
+    }, function(err, message) {
       if(err) {
         console.log(err);
       }
@@ -120,7 +119,7 @@ app.use(function(req, res, next) {
 
 /**
 * Error handlers
-*/ 
+*/
 // development error handler, will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {

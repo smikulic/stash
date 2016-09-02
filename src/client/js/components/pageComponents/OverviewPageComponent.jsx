@@ -47,7 +47,7 @@ const OverviewPage = React.createClass({
   render () {
     let userName = this.props.userObject.username;
     let savingsData = this.state.savingsData;
-    let userIncome = this.props.userObject.income;
+    let userIncome = this.props.userObject.income || "N/A";
     let headline = null;
     let totalMonthly = null;
     let totalLeftToSpend = null;
@@ -76,10 +76,10 @@ const OverviewPage = React.createClass({
         let monthly = (targetPrice - currentSavings) / durationMonthly;
 
         if (!isNaN(monthly)) {
-          totalMonthly += Math.round(monthly);  
+          totalMonthly += Math.round(monthly);
         }
 
-        if ((tempDuration == 0) || ((tempDuration > durationMonthly) && (durationMonthly > 0))) {          
+        if ((tempDuration == 0) || ((tempDuration > durationMonthly) && (durationMonthly > 0))) {
           tempDuration = durationMonthly;
           nextGoal = (
             <div className="overviewStatus-value">
@@ -118,7 +118,7 @@ const OverviewPage = React.createClass({
                 </div>
                 <div className="col-md-12">
                   <div className="overviewStatus-title">Expenses this month</div>
-                  {expensesThisMonth}
+                  {expensesThisMonth }
                 </div>
                 <div className="col-md-12">
                   <div className="overviewStatus-title">Left to spend</div>
@@ -138,40 +138,67 @@ const OverviewPage = React.createClass({
                   <div className="overviewStatus-title">Longest Goal</div>
                   <div className="overviewStatus-value">N/A</div>
                 </div>
-                <div className="col-md-12">
-                  <h3>Welcome Sinisa & Leih</h3>
-              <h3>Dashboard: Aug, 2016</h3>
-              <div>
-                <h4>Left to spend 4420 e (33.000 kn)</h4>
-                <div>This month 4220 e (31.500 kn)</div>
-                <div>Old savings 200 e (1.500 kn)</div>
-                <h4>Left to spend by budget 1406 e (10.546 kn)</h4>
               </div>
-              <div>
-                <h4>Incomes 4220 e (31.650 kn)</h4>
-                <div>Compensation 4200 e (31.500 kn)</div>
+            </div>
+
+            <h2>{moment().format("MMM, YYYY")}</h2>
+            <div className="row overviewStatus">
+              <div className="col-md-6">
+                <div className="col-md-12">
+                  <div className="overviewStatus-title">Left to spend</div>
+                  <div className="overviewStatus-value">4420 e (33.000 kn)</div>
+                </div>
+                <div className="col-md-12">
+                  <div className="overviewStatus-title">This month</div>
+                  <div className="overviewStatus-value">4220 e (31.500 kn)</div>
+                </div>
+                <div className="col-md-12">
+                  <div className="overviewStatus-title">Old savings</div>
+                  <div className="overviewStatus-value">200 e (1.500 kn)</div>
+                </div>
+                <div className="col-md-12">
+                  <div className="overviewStatus-title">Left to spend by budget</div>
+                  <div className="overviewStatus-value">1406 e (10.546 kn)</div>
+                </div>
+              </div>
+            </div>
+
+            <h2>Income & Expenses</h2>
+            <div className="row overviewStatus">
+              <div className="col-md-6">
+                <div className="col-md-12">
+                  <div className="overviewStatus-title">Incomes</div>
+                  <div className="overviewStatus-value">4220 e (31.650 kn)</div>
+                </div>
+                <div className="col-md-12">
+                  <div className="overviewStatus-title">Compensation</div>
+                  <div className="overviewStatus-value">4200 e (31.500 kn)</div>
+                </div>
                 <ul>
                   <li>2600 e, Solaris, recurring (19.500 kn)</li>
                   <li>1600 e, ISVA, recurring (12.000 kn)</li>
                 </ul>
-                <div>Other 20 e (150 kn)</div>
+                <div className="col-md-12">
+                  <div className="overviewStatus-title">Other</div>
+                  <div className="overviewStatus-value">20 e (150 kn)</div>
+                </div>
                 <ul>
                   <li>20 e, Tablet sale (150 kn)</li>
                 </ul>
               </div>
-              <div>
-                <h4>Expenses</h4>
+              <div className="col-md-6">
+                <div className="col-md-12">
+                  <div className="overviewStatus-title">Expenses</div>
+                </div>
                 <div>Household 712e (5.341 kn), budget: 1.333 e (10.000 kn)</div>
                 <ul>
                   <li>697 e, Rent, recurring (5.228 kn)</li>
                   <li>15 e, Electricity, recurring (113 kn)</li>
                 </ul>
               </div>
-                </div>
-              </div>
         		</div>
         	</div>
-        </div>	
+        </div>
       </div>
     );
   }
