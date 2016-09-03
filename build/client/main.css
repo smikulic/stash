@@ -1191,4 +1191,39 @@ input.overviewStatus-value:focus {
 .savingsList-content-element:hover .deleteSaving:hover {
   color: #FF5252; }
 
+.incomesList-header-element {
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  color: #727272;
+  border-bottom: 1px solid #B6B6B6; }
+
+.incomesList-content-element {
+  height: 40px;
+  line-height: 39px;
+  color: #727272;
+  cursor: pointer; }
+
+.incomesList-content-element .title,
+.incomesList-content-element .category,
+.incomesList-content-element .value,
+.incomesList-content-element .entryTime {
+  height: 20px;
+  line-height: 19px;
+  font-size: 14px; }
+
+.incomesList-content-element .deleteIncome {
+  display: none;
+  position: absolute;
+  top: 6px;
+  right: 30px; }
+
+.incomesList-content-element:hover {
+  background-color: #B2DFDB; }
+
+.incomesList-content-element:hover .deleteIncome {
+  display: block; }
+
+.incomesList-content-element:hover .deleteIncome:hover {
+  color: #FF5252; }
+
 /*# sourceMappingURL=main.css.map */

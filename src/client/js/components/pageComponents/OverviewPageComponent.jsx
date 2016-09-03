@@ -101,7 +101,7 @@ const OverviewPage = React.createClass({
         leftToSpendfield = <div className="overviewStatus-value u-negative">{totalLeftToSpend}</div>;
       }
 
-      expensesThisMonth = <div className="overviewStatus-value u-negative">{totalMonthly}</div>;
+      //expensesThisMonth = <div className="overviewStatus-value u-negative">{totalMonthly}</div>;
     }
 
 
@@ -118,7 +118,7 @@ const OverviewPage = React.createClass({
                 </div>
                 <div className="col-md-12">
                   <div className="overviewStatus-title">Expenses this month</div>
-                  {expensesThisMonth }
+                  {expensesThisMonth}
                 </div>
                 <div className="col-md-12">
                   <div className="overviewStatus-title">Left to spend</div>

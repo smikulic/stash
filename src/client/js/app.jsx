@@ -10,8 +10,10 @@ import Router from 'react-router';
 import NotFoundPage from './components/pageComponents/NotFoundPageComponent.jsx';
 import OverviewPage from './components/pageComponents/OverviewPageComponent.jsx';
 import SavingsPage from './components/pageComponents/SavingsPageComponent.jsx';
+import IncomesPage from './components/pageComponents/IncomesPageComponent.jsx';
 import Navigation from './components/layoutComponents/NavigationComponent.jsx';
 import Modal from './components/layoutComponents/ModalComponent.jsx';
+import IncomeModal from './components/layoutComponents/IncomeModalComponent.jsx';
 import UserStore from './stores/UserStore.jsx';
 import ApiUtils from './utils/ApiUtils.jsx';
 
@@ -55,6 +57,7 @@ const App = React.createClass({
       <div className="container-fluid">
         {/* The Modal component */}
         <Modal />
+        <IncomeModal />
 
         {/* The MainFrame component is outside the routes, and can be animated seperately */}
         <Navigation prev={this.props.prev} {...this.props} />
@@ -73,6 +76,7 @@ const routes = (
         {/* Pages */}
         <Route name="overviewPage" path="/overview" handler={OverviewPage} />
         <Route name="savingsPage" path="/savings" handler={SavingsPage} />
+        <Route name="incomesPage" path="/incomes" handler={IncomesPage} />
 
         <Redirect from="/" to="overviewPage" />
     </Route>
