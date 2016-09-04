@@ -34,6 +34,8 @@ create file `.env` in root directory and write
 
 start server with `heroku local web`
 
+TEMPORARY: Build broken so it's necessary to run `gulp bundle` on every JS change and refresh page
+
 Go to `localhost:5000/`
 
 ALTERNATIVE: run `gulp serve` if you don't wanna setup heroku

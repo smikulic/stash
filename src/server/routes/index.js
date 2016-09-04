@@ -2,6 +2,7 @@ var express = require('express');
 var passwordless = require('passwordless');
 var User = require('../models/user');
 var Goal = require('../models/goal');
+var Income = require('../models/income');
 var mongoose = require('mongoose');
 var router = express.Router();
 
@@ -161,6 +162,56 @@ router.get('/api/goals/:user_id', function(req, res) {
       res.send(err);
 
     res.json(userGoals);
+  });
+});
+
+
+/**
+ * INCOME ROUTES
+ */
+
+ /* POST create an income for user. */
+router.post('/api/createIncome', function(req,res) {
+  console.log('POST: ', '/api/createIncome');
+
+  var income = new Income();      // create a new instance of the Income model
+  income.userId = req.body.userId;  // set the income user id (comes from the request)
+  income.title = req.body.title;
+  income.value = req.body.value;
+  income.currency = req.body.currency;
+  income.entryTime = req.body.entryTime;
+
+  // save the income and check for errors
+  income.save(function(err) {
+    if (err)
+      res.send(err);
+
+    res.json({ message: 'Income created!' });
+  });
+});
+ /* DELETE remove an income. */
+router.delete('/api/removeIncome/:income_id', function(req,res) {
+  console.log('DELETE: ', '/api/removeIncome/:income_id');
+
+  console.log(req.params)
+
+  // remove the income and check for errors
+  Income.remove({ _id: req.params.income_id }).remove(function(err) {
+    if (err)
+      res.send(err);
+
+    res.json({ message: 'Income removed!' });
+  });
+});
+/* GET all incomes from user. */
+router.get('/api/incomes/:user_id', function(req, res) {
+  console.log('GET: ', '/api/incomes/:user_id');
+
+  Income.find({userId: req.params.user_id}, function(err, userIncomes) {
+    if (err)
+      res.send(err);
+
+    res.json(userIncomes);
   });
 });
 
