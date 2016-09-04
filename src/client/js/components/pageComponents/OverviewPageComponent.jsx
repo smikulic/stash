@@ -141,7 +141,7 @@ const OverviewPage = React.createClass({
               </div>
             </div>
 
-            <h2>{moment().format("MMM, YYYY")}</h2>
+            {/*<h2>{moment().format("MMM, YYYY")}</h2>
             <div className="row overviewStatus">
               <div className="col-md-6">
                 <div className="col-md-12">
@@ -196,7 +196,7 @@ const OverviewPage = React.createClass({
                   <li>15 e, Electricity, recurring (113 kn)</li>
                 </ul>
               </div>
-        		</div>
+        		</div>*/}
         	</div>
         </div>
       </div>
