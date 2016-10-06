@@ -14,7 +14,8 @@
 .incomesList-content-element .category,
 .incomesList-content-element .value,
 .incomesList-content-element .entryTime {
-  @include m-height(20px);
+  height: 20px;
+  line-height: 36px;
   font-size: $fontSize-medium;
 }
 

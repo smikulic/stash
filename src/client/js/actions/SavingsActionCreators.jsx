@@ -23,9 +23,6 @@ const SavingsActionCreators = {
       id: savingId
     });
   },
-  addIncomeValue (params) {
-    ApiUtils.addUserIncomeValue(params);
-  }
 };
 
 export default SavingsActionCreators;

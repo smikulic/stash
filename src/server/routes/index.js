@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
   if (req.user) {
     res.render('../../../src/client/index.ejs', { user: req.user, server_env: process.env.environment });
   } else {
-    res.render('index', { user: req.user });  
+    res.render('index', { user: req.user });
   }
 });
 /* GET restricted site. */
@@ -35,7 +35,7 @@ router.get('/logout', passwordless.logout(), function(req, res) {
 
 
 /* POST login screen. */
-router.post('/sendtoken', 
+router.post('/sendtoken',
   passwordless.requestToken(
     // Simply accept every user
     function(user, delivery, callback) {
@@ -85,7 +85,7 @@ router.post('/api/users', function(req,res) {
       res.send(err);
 
     res.json({ message: 'User created!' });
-  });     
+  });
 });
 /* GET all users. */
 router.get('/api/users', function(req, res) {
@@ -108,25 +108,6 @@ router.get('/api/users/:user_id', function(req, res) {
 
     res.json(user);
   });
-});
-/* POST Save user income. */
-router.post('/api/users/saveIncome', function(req,res) {
-  console.log('POST: ', '/api/saveIncome');
-
-  // update the user and check for errors
-  User.findOne({_id: req.body.userId}, function(err, user) {
-    if (err)
-      res.send(err);
-
-    user.income = req.body.incomeValue;
-
-    user.save(function(err) {
-      if (err)
-        res.send(err);
-
-      res.json(user);
-    });
-  });   
 });
 
 
@@ -192,8 +173,6 @@ router.post('/api/createIncome', function(req,res) {
  /* DELETE remove an income. */
 router.delete('/api/removeIncome/:income_id', function(req,res) {
   console.log('DELETE: ', '/api/removeIncome/:income_id');
-
-  console.log(req.params)
 
   // remove the income and check for errors
   Income.remove({ _id: req.params.income_id }).remove(function(err) {

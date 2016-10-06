@@ -55,21 +55,6 @@ export default {
   },
 
   /**
-   * Save income to user.
-   */
-  addUserIncomeValue (params) {
-    const url = `http://${baseUrl}/api/users/saveIncome`;
-    params.userId = loggedInUserId;
-
-    post(url, params)
-      .then((response) => {
-        // Do nothing
-      }, (error) => {
-        console.error("Failed to save income!", error);
-      });
-  },
-
-  /**
    * Create a new income with the given params.
    */
   addUserIncome (params) {

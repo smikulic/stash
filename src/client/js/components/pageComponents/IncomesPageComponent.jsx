@@ -4,6 +4,7 @@ import React from 'react/addons';
 import _ from 'lodash';
 import uuid from 'uuid';
 import moment from 'moment';
+import helpers from '../../utils/Helpers.js';
 import IncomesStore from '../../stores/IncomesStore.jsx';
 import IncomesActionCreators from '../../actions/IncomesActionCreators.jsx';
 
@@ -23,7 +24,7 @@ const IncomesPage = React.createClass({
   },
 
   componentWillMount() {
-    IncomesActionCreators.loadIncomes();  
+    IncomesActionCreators.loadIncomes();
   },
 
   getInitialState () {
@@ -50,16 +51,13 @@ const IncomesPage = React.createClass({
       incomesListNodes = _.map(incomesData, (obj, index) => {
         let key = uuid.v4();
         let cx = "col-sm-12 incomesList-content-element";
-        let entryTime = moment(obj.entryTime, "YYYYDDMM").format("DD MMM YYYY");
-        let valueToString = obj.value.toString();
-        let valueToStringLength = obj.value.toString().length;
-        let value = valueToString.slice(0, valueToStringLength - 2) + "." + valueToString.slice(valueToStringLength - 2);
+        let entryTime = moment(obj.entryTime, "YYYYMMDD").format("DD MMM YYYY");
 
         return (
           <div key={key} className={cx} id={index}>
             <div className="col-xs-5 col-sm-5 title">{obj.title}</div>
             <div className="col-xs-3 col-sm-3 category">{obj.category}</div>
-            <div className="col-xs-2 col-sm-2 value">{value} {obj.currency}</div>
+            <div className="col-xs-2 col-sm-2 value">{helpers.formatValues(obj.value)} {obj.currency}</div>
             <div className="col-xs-2 col-sm-2 entryTime">{entryTime}</div>
             <i className="material-icons deleteIncome" onClick={this._delete.bind(this, obj._id)}>delete</i>
           </div>
@@ -85,7 +83,7 @@ const IncomesPage = React.createClass({
               {incomesListNodes}
             </div>
           </div>
-        </div>  
+        </div>
       </div>
     );
   }

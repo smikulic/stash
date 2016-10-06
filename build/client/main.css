@@ -1274,7 +1274,7 @@ input.overviewStatus-value:focus {
 .incomesList-content-element .value,
 .incomesList-content-element .entryTime {
   height: 20px;
-  line-height: 19px;
+  line-height: 36px;
   font-size: 14px; }
 
 .incomesList-content-element .deleteIncome {

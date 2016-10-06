@@ -3,13 +3,17 @@
 import React from 'react/addons';
 import _ from 'lodash';
 import moment from 'moment';
+import helpers from '../../utils/Helpers.js';
 import SavingsStore from '../../stores/SavingsStore.jsx';
 import SavingsActionCreators from '../../actions/SavingsActionCreators.jsx';
+import IncomesStore from '../../stores/IncomesStore.jsx';
+import IncomesActionCreators from '../../actions/IncomesActionCreators.jsx';
 import LoadingSpinner from '../modulesComponents/LoadingSpinnerComponent.jsx';
 
 function getStateFromStore() {
   return {
-    savingsData: SavingsStore.getSavingsData()
+    savingsData: SavingsStore.getSavingsData(),
+    incomesData: IncomesStore.getIncomesData()
   }
 }
 
@@ -19,14 +23,17 @@ const OverviewPage = React.createClass({
 
   componentDidMount () {
     SavingsStore.addChangeListener(this._onChange);
+    IncomesStore.addChangeListener(this._onChange);
   },
 
   componentWillUnmount () {
     SavingsStore.removeChangeListener(this._onChange);
+    IncomesStore.removeChangeListener(this._onChange);
   },
 
   componentWillMount() {
     SavingsActionCreators.loadSavingsGoals();
+    IncomesActionCreators.loadIncomes();
   },
 
   getInitialState () {
@@ -37,24 +44,18 @@ const OverviewPage = React.createClass({
     this.setState(getStateFromStore());
   },
 
-  _handleIncomeChange (event) {
-    this.setState({incomeValue: event.target.value});
-    SavingsActionCreators.addIncomeValue({
-      incomeValue: event.target.value
-    });
-  },
-
   render () {
     let userName = this.props.userObject.username;
     let savingsData = this.state.savingsData;
-    let userIncome = this.props.userObject.income || "N/A";
+    let incomesData = this.state.incomesData;
+    let incomesThisMonth = 0;
     let headline = null;
     let totalMonthly = null;
-    let totalLeftToSpend = null;
     let tempDuration = 0;
     let nextGoal = <div className="overviewStatus-value">N/A</div>;
     let expensesThisMonth = <div className="overviewStatus-value u-negative">0</div>;
     let leftToSpendfield = <div className="overviewStatus-value u-positive">0</div>;
+    let currentTime = moment().format("MMM YYYY");
 
     if (userName) {
       headline = <h2>{userName + ' Overview'}</h2>;
@@ -62,10 +63,7 @@ const OverviewPage = React.createClass({
       headline = <h4><LoadingSpinner /></h4>;
     }
 
-    if (this.state.incomeValue > 0) {
-      userIncome = this.state.incomeValue;
-    }
-
+    // Loop through savings data
     if (savingsData) {
       _.map(savingsData, (obj, index) => {
         let currentSavings = obj.saved;
@@ -87,21 +85,19 @@ const OverviewPage = React.createClass({
             </div>
           );
         }
-
-        {/*<div className="completed-percentage">{percentage}%</div>
-        <div className="completed-value">{currentSavings}/{targetPrice}</div>
-        <div className="due-date">{moment(dueDate).format('ll')}</div>*/}
       });
+    }
 
-      totalLeftToSpend = userIncome - totalMonthly;
+    // Loop through incomes data
+    if (incomesData) {
+      _.map(incomesData, (obj, index) => {
+        console.log(obj)
+        let entryTime = moment(obj.entryTime, "YYYYMM").format("MMM YYYY");
 
-      if (totalLeftToSpend > 0) {
-        leftToSpendfield = <div className="overviewStatus-value u-positive">{totalLeftToSpend}</div>;
-      } else {
-        leftToSpendfield = <div className="overviewStatus-value u-negative">{totalLeftToSpend}</div>;
-      }
-
-      //expensesThisMonth = <div className="overviewStatus-value u-negative">{totalMonthly}</div>;
+        if (currentTime === entryTime) {
+          incomesThisMonth += obj.value;
+        }
+      });
     }
 
 
@@ -113,16 +109,12 @@ const OverviewPage = React.createClass({
         		<div className="row overviewStatus">
               <div className="col-md-6">
                 <div className="col-md-12">
-                  <div className="overviewStatus-title">Income/month</div>
-                  <input className="overviewStatus-value u-positive col-md-12" type="text" value={userIncome} onChange={this._handleIncomeChange} />
+                  <div className="overviewStatus-title">Income for {currentTime}</div>
+                  <input className="overviewStatus-value u-positive col-md-12" type="text" value={helpers.formatValues(incomesThisMonth)} />
                 </div>
                 <div className="col-md-12">
                   <div className="overviewStatus-title">Expenses this month</div>
                   {expensesThisMonth}
-                </div>
-                <div className="col-md-12">
-                  <div className="overviewStatus-title">Left to spend</div>
-                  {leftToSpendfield}
                 </div>
               </div>
               <div className="col-md-6">
@@ -133,10 +125,6 @@ const OverviewPage = React.createClass({
                 <div className="col-md-12">
                   <div className="overviewStatus-title">Next Goal</div>
                   {nextGoal}
-                </div>
-                <div className="col-md-12">
-                  <div className="overviewStatus-title">Longest Goal</div>
-                  <div className="overviewStatus-value">N/A</div>
                 </div>
               </div>
             </div>

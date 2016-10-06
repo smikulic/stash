@@ -73,11 +73,11 @@ const IncomeModal = React.createClass({
 
   render () {
     let ModalNode = null;
-    let titleNode = <input ref="title" className="input" type="text" placeholder="Title..." />;
-    let categoryNode = <input ref="category" className="input" type="text" placeholder="Category..." />;
-    let valueNode = <input ref="value" className="input" type="number" placeholder="Value..." />;
-    let currencyNode = <input ref="currency" className="input" type="text" placeholder="Currency..." />;
-    let entryTimeNode = <input ref="entryTime" className="input" type="date" placeholder="Entry date..." />;
+    let titleNode = <input ref="title" className="input" type="text" placeholder="Title (Organisation, Person etc.)" />;
+    let categoryNode = <input ref="category" className="input" type="text" placeholder="Category (Salary, Loan etc.)" />;
+    let valueNode = <input ref="value" className="input" type="number" placeholder="Value (1500 is 15.00)" />;
+    let currencyNode = <input ref="currency" className="input" type="text" placeholder="Currency (EUR, USD, HRK ...)" />;
+    let entryTimeNode = <input ref="entryTime" className="input" type="date" placeholder="Entry date" />;
 
     if (!this.state.titleValidate) {
       titleNode = <input ref="title" className="input u-invalid" type="text" placeholder="Please enter title." />;
@@ -94,7 +94,7 @@ const IncomeModal = React.createClass({
     if (!this.state.entryTimeValidate) {
       entryTimeNode = <input ref="entryTime" className="input u-invalid" type="date" placeholder="Please enter entry date." />;
     }
-    
+
 
     if (this.state.addIncomeModal.active) {
       ModalNode = (
