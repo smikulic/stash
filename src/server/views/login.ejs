@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ScroogeVault - track your financial goals.</title>
+    <title>ScroogeVault - Track your financial goals.</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="main.css">
     <link rel="shortcut icon" type="image/png" href="favicon.png"/>
   </head>
   <body>
-    <div class="background-image"></div>
-    <div class="welcome-container">
-      <h1 class="headline">You will receive sign in token</h1>
-      <form class="form-signin" action="/sendtoken" method="POST">
-        <br><input name="user" type="email" placeholder="Enter your email here">
-        <br><input class="btn-start" type="submit" value="Sign in">
-      </form>
+    <div class="section-main login" style="background-image: url('images/welcome.jpg')">
+      <div class="content">
+        <h2 class="subtitle">
+          <span>You will receive sign in token.</span>
+        </h2>
+        <form class="form-signin" action="/sendtoken" method="POST">
+          <br><input name="user" type="email" placeholder="Enter your email here">
+          <br><input class="btn-start" type="submit" value="Sign in">
+        </form>
+      </div>
     </div>
   </body>
   <script>

@@ -1,33 +1,125 @@
-// Used on the server - Welcome screen
-.background-image {
-  z-index: 1;
-  position: fixed;
-  left: 0;
-  right: 0;
-  display: block;
-  background: url('images/welcome.png') repeat;
+.section-main {
+  position: relative;
+  bottom: 60px;
+  height: 580px;
   width: 100%;
-  height: 100%;
-  -webkit-filter: blur(1px);
-  -moz-filter: blur(1px);
-  -o-filter: blur(1px);
-  -ms-filter: blur(1px);
-  filter: blur(1px);
-}
-.welcome-container {
-  z-index: 10;
-  position: absolute;
-  left: 25%;
-  right: 25%;
-  top: 20%;
   text-align: center;
-  color: $secondaryTextColor;
-  background-color: rgba(255,255,255,0.75);
-  border-radius: $bRadius-default;
-  box-shadow: $boxShadow-default;
+  background-position: top center;
+  background-size: cover;
+  .content {
+    position: relative;
+    padding-top: 60px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+  }
+  h1.title {
+    padding-top: 230px;
+    font-size: 54px;
+  }
+  h2.subtitle {
+    padding-bottom: 12px;
+    font-size: 26px;
+  }
+
+  @media screen and (max-width: 1023px) {
+    h1.title {
+      font-size: 48px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    bottom: 54px;
+    height: auto !important;
+    .content {
+      padding: 54px 0 115px;
+    }
+    h1.title {
+      padding-top: 54px !important;
+      font-size: 32px;
+      line-height: 1.2;
+    }
+    h2.subtitle {
+      font-size: 20px;
+      line-height: 1.2;
+    }
+  }
 }
-.welcome-container .headline {
-  padding: 0 15px;
+
+
+.features {
+  margin: 0 auto;
+  padding: 20px 0 80px;
+  width: 100%;
+  max-width: 1280px;
+  overflow: hidden;
+  .feature {
+    position: relative;
+    left: 20px;
+    float: left;
+    width: 33.333%;
+    padding-right: 40px;
+  }
+  h3 {
+    margin-bottom: 14px;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  p {
+    margin: 0;
+    font-size: 18px;
+  }
+  @media screen and (max-width: 1023px) {
+    p {
+      font-size: 16px;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .feature {
+      position: static;
+      float: none;
+      width: 100%;
+      padding: 0 20px;
+    }
+  }
+}
+
+@media screen and (max-height: 800px) {
+  .section-main {
+    height: 540px;
+    h1.title {padding-top: 130px;}
+  }
+  .features {
+    padding: 0px 0 50px;
+  }
+}
+@media screen and (max-height: 740px) {
+  .section-main {
+    height: 480px;
+    h1.title {padding-top: 100px;}
+  }
+}
+@media screen and (max-height: 700px) {
+  .section-main {
+    height: 440px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .section-main {
+    height: auto;
+    h1.title {
+      padding-top: 50px !important;
+    }
+    .content {
+      padding-bottom: 50px !important;
+    }
+  }
+}
+
+.section-main.login {
+  top: 0;
+  height: 100vh;
 }
 
 .btn-start {
@@ -35,17 +127,17 @@
   margin: 15px auto;
   padding: 10px;
   position: relative;
-  width: 80%;
+  width: 33.33%;
   color: $textPrimaryColor;
   background-color: $primaryColor;
   border-radius: $bRadius-default;
-  box-shadow: $boxShadow-default;
+  transition: background 0.2s ease-in-out;
   cursor: pointer;
 }
 .btn-start:hover, .btn-start:active, .btn-start:focus {
   color: $textPrimaryColor;
   text-decoration: none;
-  box-shadow: $boxShadow-hover;
+  background-color: rgba($primaryColor, 0.8);
 }
 .btn-start:active {
   top: 1px;
@@ -69,7 +161,6 @@
 
 .form-signin input[type="email"] {
   padding-left: 10px;
-  width: 80%;
+  width: 33.33%;
   height: 40px;
-
 }
