@@ -11,6 +11,7 @@ const Navigation = React.createClass({
     let overviewElementNode = <div className="navigation-element">Overview</div>;
     let savingsElementNode = <div className="navigation-element">Savings Goals</div>;
     let incomesElementNode = <div className="navigation-element">Incomes</div>;
+    let settingsElementNode = <div className="navigation-element">Settings</div>;
 
     switch(this.props.activeRoutes[0]) {
       case "overviewPage":
@@ -21,6 +22,9 @@ const Navigation = React.createClass({
         break;
       case "incomesPage":
         incomesElementNode = <div className="navigation-element active">Incomes</div>;
+        break;
+      case "settingsPage":
+        settingsElementNode = <div className="navigation-element active">Settings</div>;
         break;
     }
 
@@ -34,6 +38,9 @@ const Navigation = React.createClass({
         </Link>
         <Link to="incomesPage">
             {incomesElementNode}
+        </Link>
+        <Link to="settingsPage">
+            {settingsElementNode}
         </Link>
       </div>
     );

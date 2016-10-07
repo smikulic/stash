@@ -90,7 +90,6 @@ const Modal = React.createClass({
 						<div className="col-sm-12 modal-content">
 							{titleNode}
 							{valueNode}
-							<span className="u-currency">EUR</span>
 							{savedNode}
 							{dueNode}
 							<button className="btn pull-right" onClick={this._submitSaving}>Add</button>

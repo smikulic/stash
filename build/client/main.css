@@ -1009,12 +1009,6 @@ hr {
 .btn-add-wrapper:active .btn-add {
   top: 21px; }
 
-.u-currency {
-  position: absolute;
-  right: 30px;
-  font-size: 20px;
-  color: #B6B6B6; }
-
 .u-text-center {
   text-align: center; }
 

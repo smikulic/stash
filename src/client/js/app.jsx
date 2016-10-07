@@ -11,6 +11,7 @@ import NotFoundPage from './components/pageComponents/NotFoundPageComponent.jsx'
 import OverviewPage from './components/pageComponents/OverviewPageComponent.jsx';
 import SavingsPage from './components/pageComponents/SavingsPageComponent.jsx';
 import IncomesPage from './components/pageComponents/IncomesPageComponent.jsx';
+import SettingsPage from './components/pageComponents/SettingsPageComponent.jsx';
 import Navigation from './components/layoutComponents/NavigationComponent.jsx';
 import Modal from './components/layoutComponents/ModalComponent.jsx';
 import IncomeModal from './components/layoutComponents/IncomeModalComponent.jsx';
@@ -77,6 +78,7 @@ const routes = (
         <Route name="overviewPage" path="/overview" handler={OverviewPage} />
         <Route name="savingsPage" path="/savings" handler={SavingsPage} />
         <Route name="incomesPage" path="/incomes" handler={IncomesPage} />
+        <Route name="settingsPage" path="/settings" handler={SettingsPage} />
 
         <Redirect from="/" to="overviewPage" />
     </Route>

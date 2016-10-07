@@ -50,10 +50,9 @@ const OverviewPage = React.createClass({
     let incomesData = this.state.incomesData;
     let incomesThisMonth = 0;
     let headline = null;
-    let totalMonthly = null;
     let tempDuration = 0;
     let nextGoal = <div className="overviewStatus-value">N/A</div>;
-    let expensesThisMonth = <div className="overviewStatus-value u-negative">0</div>;
+    let expensesThisMonth = 0;
     let leftToSpendfield = <div className="overviewStatus-value u-positive">0</div>;
     let currentTime = moment().format("MMM YYYY");
 
@@ -74,7 +73,7 @@ const OverviewPage = React.createClass({
         let monthly = (targetPrice - currentSavings) / durationMonthly;
 
         if (!isNaN(monthly)) {
-          totalMonthly += Math.round(monthly);
+          expensesThisMonth += Math.round(monthly);
         }
 
         if ((tempDuration == 0) || ((tempDuration > durationMonthly) && (durationMonthly > 0))) {
@@ -91,13 +90,18 @@ const OverviewPage = React.createClass({
     // Loop through incomes data
     if (incomesData) {
       _.map(incomesData, (obj, index) => {
-        console.log(obj)
         let entryTime = moment(obj.entryTime, "YYYYMM").format("MMM YYYY");
 
         if (currentTime === entryTime) {
           incomesThisMonth += obj.value;
         }
       });
+    }
+
+    if (incomesThisMonth > (expensesThisMonth * 100)) {
+      leftToSpendfield = <div className="overviewStatus-value u-positive">{helpers.formatValues(incomesThisMonth - (expensesThisMonth * 100))}</div>;
+    } else {
+      leftToSpendfield = <div className="overviewStatus-value u-negative">- {helpers.formatValues((expensesThisMonth * 100) - incomesThisMonth)}</div>;
     }
 
 
@@ -114,7 +118,11 @@ const OverviewPage = React.createClass({
                 </div>
                 <div className="col-md-12">
                   <div className="overviewStatus-title">Expenses this month</div>
-                  {expensesThisMonth}
+                  <div className="overviewStatus-value u-negative">{expensesThisMonth}</div>
+                </div>
+                <div className="col-md-12">
+                  <div className="overviewStatus-title">Left to spend</div>
+                  {leftToSpendfield}
                 </div>
               </div>
               <div className="col-md-6">
@@ -129,7 +137,7 @@ const OverviewPage = React.createClass({
               </div>
             </div>
 
-            {/*<h2>{moment().format("MMM, YYYY")}</h2>
+            {/*
             <div className="row overviewStatus">
               <div className="col-md-6">
                 <div className="col-md-12">
@@ -150,17 +158,16 @@ const OverviewPage = React.createClass({
                 </div>
               </div>
             </div>
-
             <h2>Income & Expenses</h2>
             <div className="row overviewStatus">
               <div className="col-md-6">
                 <div className="col-md-12">
                   <div className="overviewStatus-title">Incomes</div>
-                  <div className="overviewStatus-value">4220 e (31.650 kn)</div>
+                  <div className="overviewStatus-value">4220 e</div>
                 </div>
                 <div className="col-md-12">
                   <div className="overviewStatus-title">Compensation</div>
-                  <div className="overviewStatus-value">4200 e (31.500 kn)</div>
+                  <div className="overviewStatus-value">4200 e</div>
                 </div>
                 <ul>
                   <li>2600 e, Solaris, recurring (19.500 kn)</li>
